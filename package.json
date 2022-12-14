@@ -1,0 +1,75 @@
+{
+  "name": "elva-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "eslintConfig": {
+    "extends": [
+      "wesbos"
+    ],
+    "settings": {
+      "import/resolver": {
+        "alias": {
+          "map": [
+            [
+              "@styles",
+              "./src/styles"
+            ],
+            [
+              "@scripts",
+              "./src/scripts"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "scripts": {
+    "start": "shopify theme dev --path shopify -e",
+    "watch": "webpack --watch",
+    "push": "shopify theme push --path shopify",
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.5",
+    "@babel/eslint-parser": "^7.19.1",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "@types/node": "^18.11.13",
+    "@typescript-eslint/eslint-plugin": "^5.46.1",
+    "@typescript-eslint/parser": "^5.46.1",
+    "babel-loader": "^9.1.0",
+    "concurrently": "^7.6.0",
+    "css-loader": "^6.7.2",
+    "eslint": "^8.29.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-wesbos": "^3.1.4",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-html": "^7.1.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "glob": "^7.2.3",
+    "mini-css-extract-plugin": "^2.7.0",
+    "prettier": "^2.8.1",
+    "sass": "^1.56.1",
+    "sass-loader": "^13.2.0",
+    "sass-resources-loader": "^2.2.5",
+    "style-loader": "^3.3.1",
+    "typescript": "^4.9.4",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.2.1",
+    "vue": "^3.2.45",
+    "vue-loader": "^17.0.1"
+  }
+}

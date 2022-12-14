@@ -1,0 +1,6 @@
+@mixin media-tablet-up {
+  @media only screen and (min-width: $breakpoint-tablet) { @content; }
+}
+@mixin media-desktop-up {
+  @media only screen and (min-width: $breakpoint-desktop) { @content; }
+}
