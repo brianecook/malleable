@@ -3,8 +3,8 @@ import '@styles/layout.scss';
 
 async function getData(path) {
   try {
-    const { data } = await axios.get(path);
-    return data;
+    const response = await axios.get(path);
+    return response.data;
   } catch (error) {
     console.error(error);
   }
@@ -12,9 +12,18 @@ async function getData(path) {
 
 (async () => {
   const cartData = await getData('/cart.js');
-  const quickshopData = await getData(
-    '/products/antique-drawers?view=quickshop'
-  );
   console.log(cartData);
-  console.log(quickshopData);
 })();
+
+const elva = {
+  select(selector) {
+    return document.querySelectorAll(selector);
+  },
+  listen(selector, event, callback) {
+    this.select(selector).forEach(($el) => {
+      $el.addEventListener(event, callback);
+    });
+  },
+};
+
+window.elva = elva;
