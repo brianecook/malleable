@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 function getScriptFiles() {
   const entries = {};
-  glob.sync('./src/scripts/*.js').forEach((file) => {
+  glob.sync('./scripts/*.js').forEach((file) => {
     const fileName = file
       .substring(file.lastIndexOf('/') + 1)
       .replace('.js', '');
@@ -16,7 +16,7 @@ function getScriptFiles() {
 
 function getWidgetFiles() {
   const entries = {};
-  glob.sync('./src/scripts/vue/**/app.js').forEach((file) => {
+  glob.sync('./scripts/vue/**/app.js').forEach((file) => {
     const fileParts = file.split('/');
     const name = `widget-${fileParts[fileParts.length - 2]}`;
     entries[name] = file;
@@ -28,7 +28,7 @@ const widgetsConfig = {
   entry: getWidgetFiles(),
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'shopify/assets'),
+    path: path.resolve(__dirname, 'assets'),
   },
   plugins: [new VueLoaderPlugin()],
   module: {
@@ -52,13 +52,13 @@ const scriptsConfig = {
   entry: getScriptFiles(),
   resolve: {
     alias: {
-      '@scripts': path.resolve(__dirname, 'src/scripts'),
-      '@styles': path.resolve(__dirname, 'src/styles'),
+      '@scripts': path.resolve(__dirname, 'scripts'),
+      '@styles': path.resolve(__dirname, 'styles'),
     },
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'shopify/assets'),
+    path: path.resolve(__dirname, 'assets'),
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -83,9 +83,7 @@ const scriptsConfig = {
           {
             loader: 'sass-resources-loader',
             options: {
-              resources: [
-                path.resolve(__dirname, './src/styles/resources.scss'),
-              ],
+              resources: [path.resolve(__dirname, './styles/resources.scss')],
             },
           },
         ],

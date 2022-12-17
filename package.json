@@ -13,11 +13,11 @@
           "map": [
             [
               "@styles",
-              "./src/styles"
+              "./styles"
             ],
             [
               "@scripts",
-              "./src/scripts"
+              "./scripts"
             ]
           ]
         }
@@ -25,9 +25,9 @@
     }
   },
   "scripts": {
-    "start": "shopify theme dev --path shopify -e",
+    "start": "shopify theme dev -e",
     "watch": "webpack --watch",
-    "push": "shopify theme push --path shopify",
+    "push": "shopify theme push",
     "build": "webpack"
   },
   "devDependencies": {
