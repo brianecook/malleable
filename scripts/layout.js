@@ -13,7 +13,6 @@ async function getData(path) {
 (async () => {
   const cartData = await getData('/cart.js');
   console.log(cartData);
-  console.log('yooop!');
 })();
 
 const elva = {
