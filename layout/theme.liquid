@@ -9,6 +9,7 @@
     {{ content_for_header }}
   </head>
   <body>
+    {% render 'cart' %}
     {{ content_for_layout }}
     <script src="{{ 'layout.js' | asset_url }}" defer></script>
   </body>

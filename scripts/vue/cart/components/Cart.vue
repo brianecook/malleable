@@ -1,21 +1,41 @@
+<template>
+  <div class="c-overlay" v-if="open" @click="open = false"></div>
+  <div :class="['c-cart', {
+    'c-cart--open': open
+  }]">
+    <div class="c-cart__inner">
+      <div v-for="(item) in cart.items" :key="item.id">
+        <img :src="item.featured_image.url" />
+        <p>{{ item.title }} x {{ item.quantity }}</p>
+      </div>
+      <p>{{ cart.items_subtotal_price }}</p>
+    </div>
+  </div>
+</template>
+
 <script>
+  import axios from 'axios';
+  import { getCart } from '@scripts/helpers';
+  
   export default {
     data() {
       return {
-        count: 0,
+        cart: {},
+        open: false
       }
     },
     methods: {
-      handleDec() {
-        if (this.count > 0) this.count--;
-      }
+      
+    },
+    async created() {
+      const response = await axios.get('/cart.js');
+      this.cart = response.data;
+
+      document.addEventListener('cartUpdated', async () => {
+        const updatedCart = await getCart();
+        this.cart = updatedCart;
+        this.open = true;
+      })
     }
   }
 </script>
-
-<template>
-  <h1>{{ count }}</h1>
-  <button type="button" @click="handleDec">Click to decrement</button>
-  &nbsp;&nbsp;
-  <button type="button" @click="count++">Click to increment</button>
-</template>

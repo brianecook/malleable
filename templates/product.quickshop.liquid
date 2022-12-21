@@ -1,3 +1,10 @@
 {% layout none %}
 
-{{ product | json }}
+{% capture response %}
+  {
+  "product": {{ product | json }},
+  "metafields": {{ product.metafields.custom | json }}
+  }
+{% endcapture %}
+
+{{ response | strip | json }}

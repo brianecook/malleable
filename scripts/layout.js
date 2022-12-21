@@ -1,18 +1,17 @@
-import axios from 'axios';
+import { addToCart, clearCart, getData } from './helpers';
 import '@styles/layout.scss';
 
-async function getData(path) {
-  try {
-    const response = await axios.get(path);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 (async () => {
-  const cartData = await getData('/cart.js');
-  console.log(cartData);
+  document
+    .querySelector('[data-add-to-cart]')
+    .addEventListener('click', async () => {
+      await addToCart(44090469744915, 2);
+    });
+  document
+    .querySelector('[data-clear-cart]')
+    .addEventListener('click', async () => {
+      await clearCart();
+    });
 })();
 
 const elva = {
