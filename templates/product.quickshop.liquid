@@ -2,7 +2,7 @@
 
 {% capture response %}
   {
-  "product": {{ product | json }},
+  "details": {{ product | json }},
   "metafields": {{ product.metafields.custom | json }}
   }
 {% endcapture %}

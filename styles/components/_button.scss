@@ -1,0 +1,14 @@
+.c-btn {
+  background-color: $color-black;
+  color: $color-white;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 12px 16px;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+.c-btn--full {
+  display: block;
+  width: 100%;
+}

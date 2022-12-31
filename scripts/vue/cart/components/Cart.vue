@@ -1,35 +1,57 @@
 <template>
-  <div class="c-overlay" v-if="open" @click="open = false"></div>
+  <div v-if="open" class="c-overlay" @click="open = false"></div>
   <div :class="['c-cart', {
     'c-cart--open': open
   }]">
     <div class="c-cart__inner">
-      <div v-for="(item) in cart.items" :key="item.id">
-        <img :src="item.featured_image.url" />
-        <p>{{ item.title }} x {{ item.quantity }}</p>
-      </div>
+      <item v-for="(item, index) in cart.items"
+        :key="item.id"
+        :item="item"
+        @increment="() => handleChangeQuantity(index + 1, item.quantity + 1)"
+        @decrement="() => handleChangeQuantity(index + 1, item.quantity - 1)"
+      />
       <p>{{ cart.items_subtotal_price }}</p>
     </div>
   </div>
 </template>
 
 <script>
-  import axios from 'axios';
-  import { getCart } from '@scripts/helpers';
+  import { getCart, getData, postData, select } from '@scripts/helpers';
+  import Item from './Item.vue';
   
   export default {
     data() {
       return {
-        cart: {},
+        cart: {
+          items: [],
+        },
         open: false
       }
     },
+    components: { 
+      Item
+    },
+    watch: {
+      open: (open) => {
+        if (open) {
+          select('body').classList.add('u-noScroll');
+        } else {
+          select('body').classList.remove('u-noScroll');
+        }
+      }
+    },
     methods: {
-      
+      async handleChangeQuantity(line, quantity) {
+        const response = await postData('/cart/change.js', {
+          line,
+          quantity
+        });
+        this.cart = response
+      },
     },
     async created() {
-      const response = await axios.get('/cart.js');
-      this.cart = response.data;
+      const response = await getData('/cart.js');
+      this.cart = response;
 
       document.addEventListener('cartUpdated', async () => {
         const updatedCart = await getCart();

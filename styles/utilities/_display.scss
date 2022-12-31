@@ -1,3 +1,24 @@
 .u-hide {
   display: none;
 }
+
+.u-hideMobile {
+  display: none;
+  @include media-desktop-up {
+    display: block;
+  }
+}
+
+.u-hideDesktop {
+  @include media-desktop-up {
+    display: none;
+  }
+}
+
+.u-noLineHeight {
+  line-height: 0;
+}
+
+.u-unset {
+  all: unset;
+}
