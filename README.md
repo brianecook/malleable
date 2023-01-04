@@ -29,4 +29,4 @@ npm install
 
 After dependencies are installed run `npm start`. This will prompt you to log into the Shopify storefront that you plan on working on.
 
-Once logged in, open a *separate* terminal tab. In this tab run `npm run watch`. This command will watch for changes in the scripts and styles directories and output the appropriate files.
+Once logged in, open a **separate** terminal tab. In this tab run `npm run watch`. This command will watch for changes in the scripts and styles directories and output the appropriate files in the assets folder.
