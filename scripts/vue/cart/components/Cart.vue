@@ -1,21 +1,73 @@
+<template>
+  <div v-if="open" class="c-overlay" @click="open = false"></div>
+  <div :class="['c-cart', {
+    'c-cart--open': open
+  }]">
+    <div class="c-cart__inner">
+      <div class="c-cart__items">
+        <item v-for="(item, index) in cart.items"
+          :key="item.id"
+          :item="item"
+          @increment="() => handleChangeQuantity(index + 1, item.quantity + 1)"
+          @decrement="() => handleChangeQuantity(index + 1, item.quantity - 1)"
+        />
+      </div>
+    </div>
+    <div class="c-cart__bottom">
+      <p class="c-cart__subtotal">Total: {{ subtotal }}</p>
+      <a class="c-cart__cta c-btn" href="/checkout">Checkout</a>
+    </div>
+  </div>
+</template>
+
 <script>
+  import { getCart, getData, postData, select, formatMoney } from '@scripts/helpers';
+  import Item from './Item.vue';
+  
   export default {
     data() {
       return {
-        count: 0,
+        cart: {
+          items: [],
+        },
+        open: false
       }
     },
+    components: { 
+      Item
+    },
     methods: {
-      handleDec() {
-        if (this.count > 0) this.count--;
+      async handleChangeQuantity(line, quantity) {
+        const response = await postData('/cart/change.js', {
+          line,
+          quantity
+        });
+        this.cart = response
+      },
+    },
+    watch: {
+      open: (open) => {
+        if (open) {
+          select('body').classList.add('u-noScroll');
+        } else {
+          select('body').classList.remove('u-noScroll');
+        }
       }
+    },
+    computed: {
+      subtotal() {
+        return formatMoney(this.cart.items_subtotal_price);
+      }
+    },
+    async created() {
+      const response = await getData('/cart.js');
+      this.cart = response;
+
+      document.addEventListener('cartUpdated', async () => {
+        const updatedCart = await getCart();
+        this.cart = updatedCart;
+        this.open = true;
+      })
     }
   }
 </script>
-
-<template>
-  <h1>{{ count }}</h1>
-  <button type="button" @click="handleDec">Click to decrement</button>
-  &nbsp;&nbsp;
-  <button type="button" @click="count++">Click to increment</button>
-</template>

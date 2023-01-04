@@ -1,29 +1,23 @@
-import axios from 'axios';
+import { addToCart, clearCart, getData, select } from './helpers';
 import '@styles/layout.scss';
 
-async function getData(path) {
-  try {
-    const response = await axios.get(path);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 (async () => {
-  const cartData = await getData('/cart.js');
-  console.log(cartData);
-})();
-
-const elva = {
-  select(selector) {
-    return document.querySelectorAll(selector);
-  },
-  listen(selector, event, callback) {
-    this.select(selector).forEach(($el) => {
-      $el.addEventListener(event, callback);
+  document.addEventListener('DOMContentLoaded', () => {
+    select('[data-add-to-cart]').listen('click', async (e) => {
+      const { id, quantity = 1 } = e.target.dataset;
+      await addToCart(id, quantity);
     });
-  },
-};
+    select('[data-clear-cart]').listen('click', async () => {
+      await clearCart();
+    });
+    select('[data-quickshop]').listen('click', async (e) => {
+      const handle = e.target.dataset.quickshop;
+      const parsedData = JSON.parse(handle);
+      const event = new CustomEvent('quickshopOpened', {
+        detail: { product: parsedData },
+      });
 
-window.elva = elva;
+      document.dispatchEvent(event);
+    });
+  });
+})();

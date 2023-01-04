@@ -25,7 +25,13 @@ function getWidgetFiles() {
 }
 
 const widgetsConfig = {
+  mode: 'development',
   entry: getWidgetFiles(),
+  resolve: {
+    alias: {
+      '@scripts': path.resolve(__dirname, 'scripts'),
+    },
+  },
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'assets'),
