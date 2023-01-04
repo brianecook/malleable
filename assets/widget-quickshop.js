@@ -108,6 +108,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./scripts/helpers/_money.js":
+/*!***********************************!*\
+  !*** ./scripts/helpers/_money.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"formatMoney\": () => (/* binding */ formatMoney)\n/* harmony export */ });\nfunction formatMoney(cents, currency = 'USD') {\n  const dollars = cents / 100;\n  return Intl.NumberFormat('en-US', {\n    style: 'currency',\n    currency\n  }).format(dollars);\n}\n\n//# sourceURL=webpack://shopify-starter/./scripts/helpers/_money.js?");
+
+/***/ }),
+
 /***/ "./scripts/helpers/index.js":
 /*!**********************************!*\
   !*** ./scripts/helpers/index.js ***!
@@ -115,7 +126,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"addToCart\": () => (/* reexport safe */ _cart__WEBPACK_IMPORTED_MODULE_1__.addToCart),\n/* harmony export */   \"clearCart\": () => (/* reexport safe */ _cart__WEBPACK_IMPORTED_MODULE_1__.clearCart),\n/* harmony export */   \"getCart\": () => (/* reexport safe */ _cart__WEBPACK_IMPORTED_MODULE_1__.getCart),\n/* harmony export */   \"getData\": () => (/* reexport safe */ _api__WEBPACK_IMPORTED_MODULE_0__.getData),\n/* harmony export */   \"postData\": () => (/* reexport safe */ _api__WEBPACK_IMPORTED_MODULE_0__.postData),\n/* harmony export */   \"select\": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.select)\n/* harmony export */ });\n/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_api */ \"./scripts/helpers/_api.js\");\n/* harmony import */ var _cart__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_cart */ \"./scripts/helpers/_cart.js\");\n/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_dom */ \"./scripts/helpers/_dom.js\");\n\n\n\n\n//# sourceURL=webpack://shopify-starter/./scripts/helpers/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"addToCart\": () => (/* reexport safe */ _cart__WEBPACK_IMPORTED_MODULE_1__.addToCart),\n/* harmony export */   \"clearCart\": () => (/* reexport safe */ _cart__WEBPACK_IMPORTED_MODULE_1__.clearCart),\n/* harmony export */   \"formatMoney\": () => (/* reexport safe */ _money__WEBPACK_IMPORTED_MODULE_3__.formatMoney),\n/* harmony export */   \"getCart\": () => (/* reexport safe */ _cart__WEBPACK_IMPORTED_MODULE_1__.getCart),\n/* harmony export */   \"getData\": () => (/* reexport safe */ _api__WEBPACK_IMPORTED_MODULE_0__.getData),\n/* harmony export */   \"postData\": () => (/* reexport safe */ _api__WEBPACK_IMPORTED_MODULE_0__.postData),\n/* harmony export */   \"select\": () => (/* reexport safe */ _dom__WEBPACK_IMPORTED_MODULE_2__.select)\n/* harmony export */ });\n/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_api */ \"./scripts/helpers/_api.js\");\n/* harmony import */ var _cart__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_cart */ \"./scripts/helpers/_cart.js\");\n/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_dom */ \"./scripts/helpers/_dom.js\");\n/* harmony import */ var _money__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./_money */ \"./scripts/helpers/_money.js\");\n\n\n\n\n\n//# sourceURL=webpack://shopify-starter/./scripts/helpers/index.js?");
 
 /***/ }),
 

@@ -4,19 +4,24 @@
     'c-cart--open': open
   }]">
     <div class="c-cart__inner">
-      <item v-for="(item, index) in cart.items"
-        :key="item.id"
-        :item="item"
-        @increment="() => handleChangeQuantity(index + 1, item.quantity + 1)"
-        @decrement="() => handleChangeQuantity(index + 1, item.quantity - 1)"
-      />
-      <p>{{ cart.items_subtotal_price }}</p>
+      <div class="c-cart__items">
+        <item v-for="(item, index) in cart.items"
+          :key="item.id"
+          :item="item"
+          @increment="() => handleChangeQuantity(index + 1, item.quantity + 1)"
+          @decrement="() => handleChangeQuantity(index + 1, item.quantity - 1)"
+        />
+      </div>
+    </div>
+    <div class="c-cart__bottom">
+      <p class="c-cart__subtotal">Total: {{ subtotal }}</p>
+      <a class="c-cart__cta c-btn" href="/checkout">Checkout</a>
     </div>
   </div>
 </template>
 
 <script>
-  import { getCart, getData, postData, select } from '@scripts/helpers';
+  import { getCart, getData, postData, select, formatMoney } from '@scripts/helpers';
   import Item from './Item.vue';
   
   export default {
@@ -31,6 +36,15 @@
     components: { 
       Item
     },
+    methods: {
+      async handleChangeQuantity(line, quantity) {
+        const response = await postData('/cart/change.js', {
+          line,
+          quantity
+        });
+        this.cart = response
+      },
+    },
     watch: {
       open: (open) => {
         if (open) {
@@ -40,14 +54,10 @@
         }
       }
     },
-    methods: {
-      async handleChangeQuantity(line, quantity) {
-        const response = await postData('/cart/change.js', {
-          line,
-          quantity
-        });
-        this.cart = response
-      },
+    computed: {
+      subtotal() {
+        return formatMoney(this.cart.items_subtotal_price);
+      }
     },
     async created() {
       const response = await getData('/cart.js');

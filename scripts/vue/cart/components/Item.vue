@@ -1,9 +1,16 @@
 <template>
-  <div>
-    <img :src="item.featured_image.url" />
-    <p>{{ item.title }} x {{ item.quantity }}</p>
-    <button @click="$emit('increment')">+</button>
-    <button @click="$emit('decrement')">-</button>
+  <div class="c-item">
+    <div class="u-noLineHeight">
+      <img :src="item.featured_image.url" />
+    </div>
+    <div class="c-item__details">
+      <p>{{ item.title }}</p>
+      <div class="c-item__actions">
+        <button @click="$emit('decrement')">–</button>
+        <span>{{ item.quantity }}</span>
+        <button @click="$emit('increment')">+</button>
+      </div>
+    </div>
   </div>
 </template>
 
