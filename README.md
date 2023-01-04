@@ -18,7 +18,7 @@ Starter repository for Shopify theme development
 To get started, clone this repository:
 
 ```
-git clone https://github.com/brianecook/shopify-starter.git
+git clone https://github.com/elvadesigngroup/shopify-starter
 ```
 
 Open a new terminal tab in Visual Studio Code (or your preferred editor with an integrated terminal). Install dependencies:
