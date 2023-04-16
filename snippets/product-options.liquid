@@ -1,0 +1,24 @@
+<div data-product-options>
+  <select data-variant-select>
+    {% for variant in product.variants %}
+      <option data-options="{{ variant.options | join: ',' }}">
+        {{ variant.id }}
+      </option>
+    {% endfor %}
+  </select>
+  {% for option in product.options_with_values %}
+    <ul data-options>
+      <li>
+        <strong>{{ option.name }}</strong>
+      </li>
+      {% for value in option.values %}
+        <li>
+          <button class="{% if forloop.first %}u-underline{% endif %}" {% if forloop.first %}data-selected{% endif %} data-option="{{ value }}">
+            {{ value }}
+          </button>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+  <button data-add-to-cart data-id="{{ product.variants[0].id }}">Add To Cart</button>
+</div>

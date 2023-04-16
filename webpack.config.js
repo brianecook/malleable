@@ -55,6 +55,7 @@ const widgetsConfig = {
 };
 
 const scriptsConfig = {
+  mode: 'development',
   entry: getScriptFiles(),
   resolve: {
     alias: {

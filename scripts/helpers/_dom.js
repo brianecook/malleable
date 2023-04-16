@@ -1,8 +1,12 @@
 const nodeListPrototype = {
   listen(event, callback) {
-    this.forEach((node) => {
-      node.addEventListener(event, callback);
-    });
+    if (this.addEventListener) {
+      this.addEventListener(event, callback);
+    } else {
+      this.forEach((node) => {
+        node.addEventListener(event, callback);
+      });
+    }
   },
 };
 

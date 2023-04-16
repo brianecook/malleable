@@ -12,6 +12,7 @@
           />
         </div>
         <div class="c-modal__details">
+          <h3>{{ product.details.title }}</h3>
           <div v-html="product.details.description"></div>
           <button class="c-btn" @click="() => handleClick(product.details.variants[0].id, 1)">Add to Cart</button>
         </div>
