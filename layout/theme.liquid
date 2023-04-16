@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ shop.name }}</title>
-    <link rel="stylesheet" href="{{ 'layout.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
     {{ content_for_header }}
   </head>
   <body>
     {% render 'cart' %}
     {% render 'quickshop' %}
     {{ content_for_layout }}
-    <script src="{{ 'layout.js' | asset_url }}" defer></script>
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
   </body>
 </html>
