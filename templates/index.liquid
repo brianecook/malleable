@@ -1,22 +1,21 @@
 <div class="o-container">
   <div class="o-grid">
     {% for product in collections.all.products %}
-      {% capture quickshopData %}
-        {
-        "details": {{ product | json }},
-        "metafields": {{ product.metafields.custom | json }}
-        }
-      {% endcapture %}
-      <div class="c-product">
-        <img
-          src="{{ product.featured_image | image_url: width: 700, height: 467 }}"
-          width="700"
-          height="467"
-          loading="lazy"
-          alt="{{ product.title }}" />
-        <div class="c-product__cta">
-          <button class="c-btn c-btn--full" data-quickshop='{{ quickshopData | strip }}'>Quickshop</button>
+      <div>
+        <div class="c-product">
+          <img
+            src="{{ product.featured_image | image_url: width: 700, height: 467 }}"
+            width="700"
+            height="467"
+            loading="lazy"
+            alt="{{ product.title }}" />
+          <div class="c-product__cta">
+            <button class="c-btn c-btn--full" data-quickshop="{{ product.url }}">Quickshop</button>
+          </div>
         </div>
+        {% if product.variants.size > 1 %}
+          {% render 'product-options', product: product %}
+        {% endif %}
       </div>
     {% endfor %}
   </div>

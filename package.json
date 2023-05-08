@@ -25,7 +25,7 @@
     }
   },
   "scripts": {
-    "start": "shopify theme dev -e",
+    "start": "shopify theme dev --store=elva-dev-playground --theme-editor-sync",
     "watch": "webpack --watch",
     "push": "shopify theme push",
     "build": "webpack --mode production",
