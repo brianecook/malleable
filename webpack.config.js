@@ -5,7 +5,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 function getScriptFiles() {
   const entries = {};
-  glob.sync('./scripts/*.js').forEach((file) => {
+  const files = [
+    ...glob.sync('./scripts/*.js'),
+    ...glob.sync('./scripts/web-components/*.js'),
+  ];
+  files.forEach((file) => {
     const fileName = file
       .substring(file.lastIndexOf('/') + 1)
       .replace('.js', '');

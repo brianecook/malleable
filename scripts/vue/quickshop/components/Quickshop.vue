@@ -4,12 +4,14 @@
     <div class="c-modal">
       <div class="c-modal__inner">
         <div class="u-noLineHeight">
-          <img
-            :src="featuredImage.src"
-            :width="featuredImage.width"
-            :height="featuredImage.height"
-            :alt="featuredImage.alt || product.details.title"
-          />
+          <a :href="`/products/${product.details.handle}`">
+            <img
+              :src="featuredImage.src"
+              :width="featuredImage.width"
+              :height="featuredImage.height"
+              :alt="featuredImage.alt || product.details.title"
+            />
+          </a>
         </div>
         <div class="c-modal__details">
           <h3>{{ product.details.title }}</h3>

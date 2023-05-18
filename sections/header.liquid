@@ -1,0 +1,18 @@
+<header class="c-header" data-header>
+  <a href="/">
+    <img class="c-header__logo" src="{{ section.settings.logo | image_url: width: 300 }}" />
+  </a>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    }
+  ]
+}
+{% endschema %}

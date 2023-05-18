@@ -1,0 +1,11 @@
+<div class="o-container">
+  <div class="c-shopGrid">
+    <div class="c-shopGrid__image">
+      <img class="u-full" src="{{ product.featured_image | image_url }}" />
+    </div>
+    <div class="c-shopGrid__details">
+      {{ product.description }}
+      {% render 'product-options', _product: product %}
+    </div>
+  </div>
+</div>

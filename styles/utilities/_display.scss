@@ -21,8 +21,14 @@
 
 .u-unset {
   all: unset;
+  cursor: pointer;
 }
 
 .u-underline {
   text-decoration: underline;
+}
+
+.u-full {
+  display: block;
+  width: 100%;
 }
