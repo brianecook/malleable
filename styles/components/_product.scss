@@ -2,13 +2,13 @@
   position: relative;
   line-height: 0;
   &:hover {
-    .c-product__cta {
+    .c-product__actions {
       display: block;
     }
   }
 }
 
-.c-product__cta {
+.c-product__actions {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -16,4 +16,8 @@
   padding: 16px;
   display: none;
   z-index: 1;
+}
+
+.c-product__cta {
+  height: 50px;
 }

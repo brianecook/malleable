@@ -28,7 +28,8 @@
     "start": "shopify theme dev --store=elva-dev-playground --theme-editor-sync",
     "watch": "webpack --watch",
     "push": "shopify theme push",
-    "build": "webpack --mode production",
+    "build": "webpack",
+    "build-production": "webpack --mode production",
     "styleguide": "vue-styleguidist server",
     "styleguide:build": "vue-styleguidist build",
     "test": "jest"

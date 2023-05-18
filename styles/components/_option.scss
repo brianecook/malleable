@@ -1,0 +1,17 @@
+.c-option {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.c-option__list {
+  display: grid;
+  gap: 6px;
+}
+
+.c-option__option {
+  &[data-selected] {
+    text-decoration: underline;
+  }
+}
+

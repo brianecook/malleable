@@ -2,9 +2,9 @@
 
 {% capture response %}
   {
-  "details": {{ product | json }},
-  "metafields": {{ product.metafields.custom | json }}
+    "details": {{ product | json }},
+    "metafields": {{ product.metafields.custom | json }}
   }
 {% endcapture %}
 
-{{ response | strip | json }}
+{{ response | strip | strip_newlines | json }}

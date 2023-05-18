@@ -10,7 +10,7 @@ module.exports = {
     },
   ],
   exampleMode: 'expand',
-  require: [path.join(__dirname, 'assets/layout.css')],
+  require: [path.join(__dirname, 'assets/theme.css')],
   webpackConfig: {
     module: {
       rules: [

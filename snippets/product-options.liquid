@@ -1,24 +1,58 @@
 <div data-product-options>
-  <select data-variant-select>
-    {% for variant in product.variants %}
-      <option data-options="{{ variant.options | join: ',' }}">
-        {{ variant.id }}
-      </option>
-    {% endfor %}
-  </select>
-  {% for option in product.options_with_values %}
-    <ul data-options>
-      <li>
-        <strong>{{ option.name }}</strong>
-      </li>
-      {% for value in option.values %}
-        <li>
-          <button class="{% if forloop.first %}u-underline{% endif %}" {% if forloop.first %}data-selected{% endif %} data-option="{{ value }}">
-            {{ value }}
-          </button>
-        </li>
+  {% unless _product.has_only_default_variant %}
+    <select data-variant-select style="display: none">
+      {% for variant in _product.variants %}
+        <option data-options="{{ variant.options | join: ',' }}">
+          {{ variant.id }}
+        </option>
       {% endfor %}
-    </ul>
-  {% endfor %}
-  <button data-add-to-cart data-id="{{ product.variants[0].id }}">Add To Cart</button>
+    </select>
+    {% for option in _product.options_with_values %}
+      {% liquid
+        assign downcase_option = option.name | downcase
+        assign is_swatch_option = false
+        if downcase_option contains 'color' or downcase_option contains 'pattern'
+          assign is_swatch_option = true
+        endif
+      %}
+      <div class="c-option">
+        <h4>{{ option.name }}</h4>
+        {% unless is_swatch_option %}
+          <ul class="c-option__list" data-options>
+            {% for value in option.values %}
+              <li>
+                <button
+                  class="c-option__option"
+                  {% if forloop.first %}data-selected{% endif %}
+                  data-option="{{ value }}"
+                >
+                  {{ value }}
+                </button>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <ul class="c-swatches" data-options>
+            {% for value in option.values %}
+              {% liquid
+                assign value_handle = value | handleize
+                assign value_asset = value_handle | append: '.png' 
+              %}
+              <li>
+                <button
+                  class="c-swatches__swatch"
+                  {% if forloop.first %}data-selected{% endif %}
+                  data-option="{{ value }}"
+                  style="background-image: url('{{ value_asset | file_url }}')"
+                >
+                  {{ value }}
+                </button>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endunless %}
+      </div>
+    {% endfor %}
+  {% endunless %}
+  <button class="c-btn" data-add-to-cart data-id="{{ _product.variants[0].id }}">Add To Cart</button>
 </div>

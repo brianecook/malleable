@@ -11,6 +11,7 @@
   <body>
     {% render 'cart' %}
     {% render 'quickshop' %}
+    {% section 'header' %}
     {{ content_for_layout }}
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
   </body>

@@ -8,12 +8,12 @@ const nodeListPrototype = {
       });
     }
   },
-  listen(event, callback) {
-    const callbackWithNode = (node) => () =>
-      callback(Object.assign(node, nodeListPrototype));
+  listen(eventName, callback) {
+    const callbackWithNode = (node) => (e) =>
+      callback(Object.assign(node, nodeListPrototype), e);
 
     this.execute((node) =>
-      node.addEventListener(event, callbackWithNode(node))
+      node.addEventListener(eventName, (e) => callbackWithNode(node)(e))
     );
   },
   modifyClass(method, className) {
@@ -22,9 +22,17 @@ const nodeListPrototype = {
 };
 
 export function select(selector, parent = document) {
+  const improperSelectorPassed =
+    typeof selector === 'string' && selector.indexOf('[') !== 0;
   const object =
     typeof selector === 'string' ? parent.querySelectorAll(selector) : selector;
   const selectObject = object && object.length === 1 ? object[0] : object;
   const extendedObject = Object.assign(selectObject, nodeListPrototype);
+
+  if (improperSelectorPassed) {
+    console.warn(
+      'Improper selector value passed. Please use data attribute as selector.'
+    );
+  }
   return extendedObject;
 }

@@ -1,3 +1,5 @@
+.github
+.babelrc
 .gitignore
 package.json
 package-lock.json

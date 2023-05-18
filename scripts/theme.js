@@ -1,14 +1,26 @@
-import { addToCart, clearCart, getData, select } from './helpers';
-import '@styles/layout.scss';
+import {
+  addToCart,
+  clearCart,
+  getData,
+  select,
+  setSizeStyleProperty,
+} from './helpers';
+import '@styles/theme.scss';
 
 (async () => {
+  const $header = select('[data-header]');
+
+  setSizeStyleProperty('--headerHeight', $header);
+
   select('[data-add-to-cart]').listen('click', async ($target) => {
     const { id, quantity = 1 } = $target.dataset;
     await addToCart(id, quantity);
   });
+
   select('[data-clear-cart]').listen('click', async () => {
     await clearCart();
   });
+
   select('[data-quickshop]').listen('click', async ($target) => {
     const productUrl = $target.dataset.quickshop;
     const data = await getData(`${productUrl}?view=quickshop`);
@@ -19,6 +31,7 @@ import '@styles/layout.scss';
 
     document.dispatchEvent(event);
   });
+
   select('[data-option]').listen('click', ($target) => {
     function getVariant($container) {
       const values = [];
@@ -43,10 +56,8 @@ import '@styles/layout.scss';
       .querySelectorAll('[data-option]')
       .forEach(($option) => {
         $option.removeAttribute('data-selected', '');
-        $option.classList.remove('u-underline');
       });
     $target.setAttribute('data-selected', '');
-    $target.classList.add('u-underline');
 
     getVariant($target.closest('[data-product-options]'));
   });

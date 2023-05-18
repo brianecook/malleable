@@ -4,3 +4,6 @@
 @mixin media-desktop-up {
   @media only screen and (min-width: $breakpoint-desktop) { @content; }
 }
+@mixin media-desktop-down {
+  @media only screen and (max-width: calc($breakpoint-desktop - 1px)) { @content; }
+}
