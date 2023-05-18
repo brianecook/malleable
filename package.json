@@ -7,6 +7,9 @@
     "extends": [
       "wesbos"
     ],
+    "rules": {
+      "class-methods-use-this": "off"
+    },
     "settings": {
       "import/resolver": {
         "alias": {

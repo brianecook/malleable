@@ -19,6 +19,10 @@ const nodeListPrototype = {
   modifyClass(method, className) {
     this.execute((node) => node.classList[method](className));
   },
+  attribute(method, attributeName, value = '') {
+    const action = `${method}Attribute`;
+    this.execute((node) => node[action](attributeName, value));
+  },
 };
 
 export function select(selector, parent = document) {

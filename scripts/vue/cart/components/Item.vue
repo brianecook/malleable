@@ -5,7 +5,7 @@
     </div>
     <div class="c-item__details">
       <p>{{ item.title }}</p>
-      <div class="c-item__actions">
+      <div class="c-quantity">
         <button @click="$emit('decrement')">–</button>
         <span>{{ item.quantity }}</span>
         <button @click="$emit('increment')">+</button>

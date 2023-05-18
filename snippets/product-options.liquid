@@ -1,4 +1,4 @@
-<div data-product-options>
+<product-options>
   {% unless _product.has_only_default_variant %}
     <select data-variant-select style="display: none">
       {% for variant in _product.variants %}
@@ -55,4 +55,6 @@
     {% endfor %}
   {% endunless %}
   <button class="c-btn" data-add-to-cart data-id="{{ _product.variants[0].id }}">Add To Cart</button>
-</div>
+</product-options>
+
+<script src="{{ 'product-options.js' | asset_url }}" defer></script>

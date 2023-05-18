@@ -75,14 +75,14 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./scripts/theme.js":
-/*!**************************!*\
-  !*** ./scripts/theme.js ***!
-  \**************************/
+/***/ "./scripts/web-components/product-options.js":
+/*!***************************************************!*\
+  !*** ./scripts/web-components/product-options.js ***!
+  \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helpers */ \"./scripts/helpers/index.js\");\n/* harmony import */ var _styles_theme_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @styles/theme.scss */ \"./styles/theme.scss\");\n\n\n(async () => {\n  const $header = (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.select)('[data-header]');\n  (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.setSizeStyleProperty)('--headerHeight', $header);\n  (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.select)('[data-add-to-cart]').listen('click', async $target => {\n    const {\n      id,\n      quantity = 1\n    } = $target.dataset;\n    await (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.addToCart)(id, quantity);\n  });\n  (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.select)('[data-clear-cart]').listen('click', async () => {\n    await (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.clearCart)();\n  });\n  (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.select)('[data-quickshop]').listen('click', async $target => {\n    const productUrl = $target.dataset.quickshop;\n    const data = await (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.getData)(`${productUrl}?view=quickshop`);\n    const parsedData = JSON.parse(data);\n    const event = new CustomEvent('quickshopOpened', {\n      detail: {\n        product: parsedData\n      }\n    });\n    document.dispatchEvent(event);\n  });\n})();\n\n//# sourceURL=webpack://shopify-starter/./scripts/theme.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../helpers */ \"./scripts/helpers/index.js\");\n\nclass ProductOptions extends HTMLElement {\n  constructor() {\n    super();\n    this.options = (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.select)('[data-option]', this);\n    this.options.listen('click', $option => this.handleOptionClick($option));\n  }\n  handleOptionClick($option) {\n    (0,_helpers__WEBPACK_IMPORTED_MODULE_0__.select)('[data-option]', $option.closest('[data-options]')).attribute('remove', 'data-selected');\n    $option.attribute('set', 'data-selected');\n    this.getVariant(this);\n  }\n  getVariant($container) {\n    const values = [];\n    $container.querySelectorAll('[data-selected]').forEach($option => {\n      values.push($option.getAttribute('data-option'));\n    });\n    const $selectedOption = $container.querySelector(`[data-options=\"${values.join(',')}\"]`);\n    $container.querySelector('[data-variant-select]').selectedIndex = $selectedOption.index;\n    $container.querySelector('[data-add-to-cart]').setAttribute('data-id', $selectedOption.textContent.trim());\n  }\n}\ncustomElements.define('product-options', ProductOptions);\n\n//# sourceURL=webpack://shopify-starter/./scripts/web-components/product-options.js?");
 
 /***/ }),
 
@@ -93,17 +93,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _hel
 /***/ ((module) => {
 
 eval("/* eslint-env browser */\nmodule.exports = typeof self == 'object' ? self.FormData : window.FormData;\n\n\n//# sourceURL=webpack://shopify-starter/./node_modules/form-data/lib/browser.js?");
-
-/***/ }),
-
-/***/ "./styles/theme.scss":
-/*!***************************!*\
-  !*** ./styles/theme.scss ***!
-  \***************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://shopify-starter/./styles/theme.scss?");
 
 /***/ }),
 
@@ -607,7 +596,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./scripts/theme.js");
+/******/ 	var __webpack_exports__ = __webpack_require__("./scripts/web-components/product-options.js");
 /******/ 	
 /******/ })()
 ;

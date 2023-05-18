@@ -1,6 +1,10 @@
 html {
   box-sizing: border-box;
+}
+
+body {
   padding-top: var(--headerHeight);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 *,

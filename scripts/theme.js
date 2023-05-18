@@ -31,34 +31,4 @@ import '@styles/theme.scss';
 
     document.dispatchEvent(event);
   });
-
-  select('[data-option]').listen('click', ($target) => {
-    function getVariant($container) {
-      const values = [];
-
-      $container.querySelectorAll('[data-selected]').forEach(($option) => {
-        values.push($option.getAttribute('data-option'));
-      });
-
-      const $selectedOption = $container.querySelector(
-        `[data-options="${values.join(',')}"]`
-      );
-
-      $container.querySelector('[data-variant-select]').selectedIndex =
-        $selectedOption.index;
-      $container
-        .querySelector('[data-add-to-cart]')
-        .setAttribute('data-id', $selectedOption.textContent.trim());
-    }
-
-    $target
-      .closest('[data-options]')
-      .querySelectorAll('[data-option]')
-      .forEach(($option) => {
-        $option.removeAttribute('data-selected', '');
-      });
-    $target.setAttribute('data-selected', '');
-
-    getVariant($target.closest('[data-product-options]'));
-  });
 })();
