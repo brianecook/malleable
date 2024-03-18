@@ -28,7 +28,7 @@
     }
   },
   "scripts": {
-    "start": "shopify theme dev --store=elva-dev-playground --theme-editor-sync",
+    "start": "shopify theme dev --store=eloquent-development --theme-editor-sync",
     "watch": "webpack --watch",
     "push": "shopify theme push",
     "build": "webpack",
@@ -80,6 +80,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.2.1",
+    "selectricity": "^1.0.6",
     "vue": "^3.2.45",
     "vue-loader": "^17.0.1"
   }

@@ -1,22 +1,33 @@
 <div class="o-container">
   <div class="o-grid">
     {% for product in collections.all.products %}
-      <div>
+      <quick-shop>
         <div class="c-product">
           <a href="{{ product.url }}">
-            <img
-              src="{{ product.featured_image | image_url: width: 700, height: 467 }}"
-              width="700"
-              height="467"
-              loading="lazy"
-              alt="{{ product.title }}"
-            />
+            {{ product.featured_image | image_url: width: 700 | image_tag }}
           </a>
           <div class="c-product__actions">
             <button class="c-product__cta c-btn c-btn--full" data-quickshop="{{ product.url }}">Quickshop</button>
           </div>
         </div>
-      </div>
+      </quick-shop>
     {% endfor %}
   </div>
 </div>
+
+{% schema %}
+  {
+    "name": "Product Grid",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      }
+    ],
+    "presets": [{
+      "name": "Product Grid",
+      "category": "Product Grid"
+    }]
+  }
+  {% endschema %}

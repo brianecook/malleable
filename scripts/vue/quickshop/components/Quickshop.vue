@@ -24,7 +24,8 @@
 </template>
 
 <script>
-  import { addToCart, select } from '@scripts/helpers';
+  import select from 'selectricity';
+  import { addToCart } from '@scripts/helpers';
 
   export default {
     data() {
@@ -36,7 +37,10 @@
     },
     methods: {
       async handleClick(id, quantity) {
-        await addToCart(id, quantity);
+        await addToCart([{
+          id,
+          quantity
+        }]);
         this.open = false;
       }
     },

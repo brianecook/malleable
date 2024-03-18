@@ -21,7 +21,8 @@
 </template>
 
 <script>
-  import { getCart, getData, postData, select, formatMoney } from '@scripts/helpers';
+  import select from 'selectricity';
+  import { getCart, getData, postData, formatMoney } from '@scripts/helpers';
   import Item from './Item.vue';
   
   export default {

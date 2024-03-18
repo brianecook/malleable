@@ -1,6 +1,6 @@
-import { select } from '../helpers';
+import select from 'selectricity';
 
-class ProductOptions extends HTMLElement {
+export default class ProductOptions extends HTMLElement {
   constructor() {
     super();
     this.options = select('[data-option]', this);
