@@ -5,14 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ shop.name }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Borel&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
     {{ content_for_header }}
   </head>
   <body>
-    {% render 'cart' %}
-    {% render 'quickshop' %}
+    {% render 'widget-cart' %}
     {% section 'header' %}
     {{ content_for_layout }}
-    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+    <script src="{{ 'theme.min.js' | asset_url }}" defer></script>
   </body>
 </html>

@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "product_grid_gf74Cy": {
+      "type": "product-grid",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "product_grid_gf74Cy"
+  ]
+}

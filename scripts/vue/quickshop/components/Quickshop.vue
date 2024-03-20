@@ -4,19 +4,22 @@
     <div class="c-modal">
       <div class="c-modal__inner">
         <div class="u-noLineHeight">
-          <a :href="`/products/${product.details.handle}`">
+          <a :href="`/products/${product.handle}`">
             <img
               :src="featuredImage.src"
               :width="featuredImage.width"
               :height="featuredImage.height"
-              :alt="featuredImage.alt || product.details.title"
+              :alt="featuredImage.alt || product.title"
             />
           </a>
         </div>
         <div class="c-modal__details">
-          <h3>{{ product.details.title }}</h3>
-          <div v-html="product.details.description"></div>
-          <button class="c-btn" @click="() => handleClick(product.details.variants[0].id, 1)">Add to Cart</button>
+          <h3>{{ product.title }}</h3>
+          <div v-html="product.description"></div>
+          <product-actions
+            :product="product"
+            @productAddedToCart="open = false"
+          />
         </div>
       </div>
     </div>
@@ -24,7 +27,8 @@
 </template>
 
 <script>
-  import { addToCart, select } from '@scripts/helpers';
+  import select from 'selectricity';
+  import ProductActions from '../../product-actions/components/ProductActions.vue';
 
   export default {
     data() {
@@ -34,30 +38,28 @@
         open: false
       }
     },
-    methods: {
-      async handleClick(id, quantity) {
-        await addToCart(id, quantity);
-        this.open = false;
-      }
-    },
     computed: {
       featuredImage() {
-        return this.product.details.media[0];
-      }
+        return this.product.media[0];
+      },
     },
     watch: {
-      open: (open) => {
-        if (open) {
-          select('body').classList.add('u-noScroll');
-        } else {
-          select('body').classList.remove('u-noScroll');
-        }
+      open: () => {
+        const $body = select('body');
+        if (open) $body.addClass('u-noScroll');
+        else $body.removeClass('u-noScroll');
       }
+    },
+    components: {
+      ProductActions
     },
     async created() {
       document.addEventListener('quickshopOpened', (e) => {
-        const { product } = e.detail;
-        this.product = product;
+        const { product: { details, options_with_values } } = e.detail;
+        this.product = {
+          ...details,
+          options_with_values
+        };
         this.open = true;
       });
     }

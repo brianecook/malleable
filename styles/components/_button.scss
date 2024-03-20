@@ -13,3 +13,26 @@
   display: block;
   width: 100%;
 }
+
+.c-qty {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  &__qty {
+    text-align: center;
+    width: 16px;
+  }
+  &__btn {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+    box-shadow: 0 0 0 1px $color-black;
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

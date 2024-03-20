@@ -1,0 +1,35 @@
+<div class="o-container">
+  <div class="o-grid">
+    {% for product in collections.all.products %}
+      <quick-shop>
+        <div class="c-product">
+          <a href="{{ product.url }}">
+            {{ product.featured_image | image_url: width: 700 | image_tag }}
+          </a>
+          <div class="c-product__actions">
+            <button class="c-product__cta c-btn c-btn--full" data-quickshop="{{ product.url }}">Quickshop</button>
+          </div>
+        </div>
+      </quick-shop>
+    {% endfor %}
+  </div>
+</div>
+
+{% render 'widget-quickshop' %}
+
+{% schema %}
+  {
+    "name": "Product Grid",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      }
+    ],
+    "presets": [{
+      "name": "Product Grid",
+      "category": "Product Grid"
+    }]
+  }
+  {% endschema %}

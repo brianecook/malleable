@@ -9,9 +9,9 @@
   max-height: 100%;
   overflow-y: auto;
   background-color: $color-white;
-  z-index: 30;
+  z-index: 20;
   @include media-desktop-up {
-    width: 1000px;
+    width: 1248px;
     overflow-y: unset;
     height: auto;
   }
