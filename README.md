@@ -1,6 +1,6 @@
 # Malleable
 
-Starter repository for Shopify theme development. View demo store [here](https://github.com/brianecook/malleable) (pw: eloquent).
+Starter repository for Shopify theme development. View demo store [here](https://eloquent-development.myshopify.com) (pw: eloquent).
 
 ## Features
 
