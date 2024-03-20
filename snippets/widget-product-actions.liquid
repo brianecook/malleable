@@ -1,0 +1,18 @@
+<div id="v-product-actions"></div>
+
+<script>
+  window.product = {{ _product | json }};
+  window.product.options_with_values = {{ _product.options_with_values | json }};
+  window.product.assets = {};
+  {% for option in _product.options_with_values %}
+  {% if option.name == 'Color' or option.name == 'Pattern' or option.name == 'Style' %}
+    {% for value in option.values %}
+      {% assign optionHandle = value | handleize %}
+      {% assign asset = optionHandle | replace: ' ', '-' | downcase | prepend: 'swatch_' | append: '.jpg' | remove: '™' %}
+      {% assign assetUrl = asset | file_url %}
+      window.product.assets['{{ value }}'] = '{{ assetUrl }}'{% endfor %}
+    {% endif %}
+  {% endfor %}
+</script>
+
+<script src="{{ 'widget-product-actions.js' | asset_url }}" defer></script>

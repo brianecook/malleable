@@ -4,10 +4,6 @@ import { addToCart, clearCart, getData, setSizeStyleProperty } from './helpers';
 import '@styles/theme.scss';
 
 (async () => {
-  const $header = select('[data-header]');
-
-  setSizeStyleProperty('--headerHeight', $header);
-
   select('[data-add-to-cart]').listen('click', async ({ $node }) => {
     const { id, quantity = 1 } = $node.dataset;
     await addToCart(id, quantity);
@@ -15,6 +11,11 @@ import '@styles/theme.scss';
 
   select('[data-clear-cart]').listen('click', async () => {
     await clearCart();
+  });
+
+  select('[data-cart-toggle]').listen('click', () => {
+    const event = new CustomEvent('cartToggled');
+    document.dispatchEvent(event);
   });
 
   customElements.define('quick-shop', Quickshop);

@@ -15,9 +15,14 @@ export async function getCart() {
   return response;
 }
 
-export async function addToCart(items) {
+export async function addToCart(id, quantity = 1) {
   const response = await postData('/cart/add.js', {
-    items,
+    items: [
+      {
+        id,
+        quantity,
+      },
+    ],
   });
   informCartUpdated();
   return response;

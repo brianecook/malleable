@@ -3,6 +3,7 @@
 {% capture response %}
   {
     "details": {{ product | json }},
+    "options_with_values": {{ product.options_with_values | json }},
     "metafields": {{ product.metafields.custom | json }}
   }
 {% endcapture %}

@@ -2,14 +2,14 @@
   display: grid;
   grid-template-columns: 125px 1fr;
   gap: 16px;
-}
-
-.c-item__details {
-  
-}
-
-.c-item__actions {
-  display: flex;
-  gap: 12px;
-  line-height: 0;
+  &__actions {
+    display: flex;
+    gap: 12px;
+    line-height: 0;
+  }
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

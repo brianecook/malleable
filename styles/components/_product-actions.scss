@@ -1,0 +1,25 @@
+.c-productActions {
+  &__option {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  &__values {
+    display: grid;
+    gap: 6px;
+  }
+  &__value {
+    &--selected {
+      text-decoration: underline;
+    }
+    &--disabled {
+      opacity: 0.5;
+    }
+  }
+  &__atc {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 28px;
+  }
+}

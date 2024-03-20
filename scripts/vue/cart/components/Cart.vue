@@ -4,12 +4,19 @@
     'c-cart--open': open
   }]">
     <div class="c-cart__inner">
+      <div class="c-cart__header">
+        <h3>Your Cart</h3>
+        <button class="c-cart__close" @click="open = false">
+          <v-icon name="hi-x" />
+        </button>
+      </div>
       <div class="c-cart__items">
         <item v-for="(item, index) in cart.items"
           :key="item.id"
           :item="item"
           @increment="() => handleChangeQuantity(index + 1, item.quantity + 1)"
           @decrement="() => handleChangeQuantity(index + 1, item.quantity - 1)"
+          @remove="() => handleChangeQuantity(index + 1, 0)"
         />
       </div>
     </div>
@@ -63,6 +70,10 @@
     async created() {
       const response = await getData('/cart.js');
       this.cart = response;
+
+      document.addEventListener('cartToggled', async () => {
+        this.open = !this.open;
+      });
 
       document.addEventListener('cartUpdated', async () => {
         const updatedCart = await getCart();
