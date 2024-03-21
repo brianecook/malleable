@@ -46,8 +46,7 @@
     watch: {
       open: () => {
         const $body = select('body');
-        if (open) $body.addClass('u-noScroll');
-        else $body.removeClass('u-noScroll');
+        $body.toggleClass('u-noScroll');
       }
     },
     components: {
