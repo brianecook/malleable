@@ -1,6 +1,6 @@
 .o-grid {
   display: grid;
-  gap: 14px;
+  gap: rem(14);
   @include media-tablet-up {
     grid-template-columns: repeat(2, 1fr);
   }

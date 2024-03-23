@@ -1,11 +1,10 @@
 .c-cart {
   position: fixed;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
+  inset: 0;
+  left: auto;
   display: flex;
   flex-direction: column;
-  width: 396px;
+  width: rem(396);
   max-width: 100%;
   height: 100%;
   background-color: $color-white;
@@ -19,20 +18,20 @@
 
 .c-cart__inner {
   overflow-y: auto;
-  padding: 16px;
-  margin-bottom: 104px;
+  padding: rem(16);
+  margin-bottom: rem(104);
 }
 
 .c-cart__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 16px;
+  margin-bottom: rem(16);
 }
 
 .c-cart__items {
   display: grid;
-  gap: 16px;
+  gap: rem(16);
 }
 
 .c-cart__bottom {
@@ -43,13 +42,13 @@
   z-index: 1;
   line-height: 1;
   background-color: $color-white;
-  border-top: 1px solid $color-black;
-  padding: 16px;
+  border-top: rem(1) solid $color-black;
+  padding: rem(16);
 }
 
 .c-cart__subtotal {
   margin: 0;
-  padding-bottom: 16px;
+  padding-bottom: rem(16);
 }
 
 .c-cart__cta {

@@ -1,14 +1,14 @@
 .c-swatches {
   display: flex;
-  gap: 12px;
+  gap: rem(12);
 }
 
 .c-swatches__swatch {
   border-radius: 100%;
-  width: 24px;
-  height: 24px;
+  width: rem(24);
+  height: rem(24);
   font-size: 0;
   &[data-selected] {
-    box-shadow: 0 0 0 2px $color-black inset;
+    box-shadow: 0 0 0 rem(2) $color-black inset;
   }
 }

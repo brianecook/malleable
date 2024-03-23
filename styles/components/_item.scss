@@ -1,10 +1,10 @@
 .c-item {
   display: grid;
-  grid-template-columns: 125px 1fr;
-  gap: 16px;
+  grid-template-columns: rem(125) 1fr;
+  gap: rem(16);
   &__actions {
     display: flex;
-    gap: 12px;
+    gap: rem(12);
     line-height: 0;
   }
   &__bottom {

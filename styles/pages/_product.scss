@@ -1,8 +1,8 @@
 .c-shopGrid {
   display: grid;
-  gap: 16px;
+  gap: rem(16);
   @include media-desktop-up {
     grid-template-columns: 1fr 1fr;
-    gap: 32px;
+    gap: rem(32);
   }
 }
