@@ -8,6 +8,7 @@
       <div class="c-item__bottom">
         <div class="c-item__actions">
           <quantity
+            :miniumum="0"
             :quantity="item.quantity"
             @increment="$emit('increment')"
             @decrement="$emit('decrement')"

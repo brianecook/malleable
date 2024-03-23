@@ -13,11 +13,11 @@
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 16px;
+  padding: rem(16);
   display: none;
   z-index: 1;
 }
 
 .c-product__cta {
-  height: 50px;
+  height: rem(50);
 }

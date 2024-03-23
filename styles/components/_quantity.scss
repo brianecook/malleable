@@ -1,0 +1,25 @@
+.c-qty {
+  display: flex;
+  align-items: center;
+  gap: rem(16);
+  &__qty {
+    text-align: center;
+    width: rem(16);
+  }
+  &__btn {
+    position: relative;
+    width: rem(24);
+    height: rem(24);
+    border-radius: 100%;
+    box-shadow: 0 0 0 rem(1) $color-black;
+    &[disabled] {
+      opacity: 0.5;
+    }
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

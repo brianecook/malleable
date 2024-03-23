@@ -5,7 +5,9 @@
   }]">
     <div class="c-cart__inner">
       <div class="c-cart__header">
-        <h3>Your Cart</h3>
+        <div>
+          <strong>Your Cart</strong> ({{ cart.item_count }} {{ cart.item_count === 1 ? 'item' : 'items' }})
+        </div>
         <button class="c-cart__close" @click="open = false">
           <v-icon name="hi-x" />
         </button>

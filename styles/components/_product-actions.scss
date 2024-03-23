@@ -1,12 +1,12 @@
 .c-productActions {
   &__option {
     display: grid;
-    gap: 12px;
-    margin-bottom: 24px;
+    gap: rem(12);
+    margin-bottom: rem(24);
   }
   &__values {
     display: grid;
-    gap: 6px;
+    gap: rem(6);
   }
   &__value {
     &--selected {
@@ -19,7 +19,7 @@
   &__atc {
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-top: 28px;
+    gap: rem(16);
+    margin-top: rem(28);
   }
 }

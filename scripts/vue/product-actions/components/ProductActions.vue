@@ -1,46 +1,63 @@
 <template>
   <div class="c-productActions">
-    <div v-if="!singleVariantProduct">
-      <div class="c-productActions__option" v-for="(option, optionIndex) in this.product.options_with_values" :key="optionIndex">
-        <strong>{{ option.name }}</strong>
-        <ul class="c-productActions__values">
-          <li v-for="(value, index) in option.values" :key="index">
-            <button
-              :class="['c-productActions__value', {
-                'c-productActions__value--disabled': checkOptionDisabled(value, optionIndex),
-                'c-productActions__value--selected': selectedOptions[optionIndex] === value
-              }]"
-              :disabled="checkOptionDisabled(value, optionIndex)"
-              @click="() => {
-                handleOptionChange(value, optionIndex);
-              }"
-            >
-              {{ value }}
-            </button>
-          </li>
-        </ul>
+    <div v-if="product.available">
+      <div v-if="!singleVariantProduct">
+        <div class="c-productActions__option" v-for="(option, optionIndex) in this.product.options_with_values" :key="optionIndex">
+          <strong>{{ option.name }}</strong>
+          <ul class="c-productActions__values">
+            <li v-for="(value, index) in option.values" :key="index">
+              <button
+                :class="['c-productActions__value', {
+                  'c-productActions__value--disabled': checkOptionDisabled(value, optionIndex),
+                  'c-productActions__value--selected': selectedOptions[optionIndex] === value
+                }]"
+                :disabled="checkOptionDisabled(value, optionIndex)"
+                @click="() => {
+                  handleOptionChange(value, optionIndex);
+                }"
+              >
+                {{ value }}
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="c-productActions__atc">
+        <quantity
+          :quantity="quantity"
+          @increment="quantity++"
+          @decrement="quantity > 1 && quantity--"
+        />
+        <button :class="['c-btn', {
+          'c-btn--adding': adding
+        }]" @click="() => handleAddToCart()">
+          Add To Cart
+          <div class="c-btn__overlay">
+            <v-icon name="pr-spinner" animation="spin" />
+          </div>
+        </button>
       </div>
     </div>
-    <div class="c-productActions__atc">
-      <quantity
-        :quantity="quantity"
-        @increment="quantity++"
-        @decrement="quantity > 1 && quantity--"
-      />
-      <button class="c-btn" @click="() => handleAddToCart()">Add To Cart</button>
+    <div v-else>
+      <button class="c-btn" disabled>Out of Stock</button>
     </div>
   </div>
 </template>
 
 <script>
   import { addToCart } from '@scripts/helpers';
+  import { OhVueIcon, addIcons } from 'oh-vue-icons';
+  import { PrSpinner } from 'oh-vue-icons/icons/pr';
   import Quantity from '../../quantity/Quantity.vue';
+
+  addIcons(PrSpinner)
 
   export default {
     data() {
       return {
         quantity: 1,
-        selectedOptions: []
+        selectedOptions: [],
+        adding: false,
       }
     },
     props: {
@@ -49,7 +66,8 @@
       }
     },
     components: {
-      Quantity
+      Quantity,
+      "v-icon": OhVueIcon
     },
     methods: {
       handleDec() {
@@ -62,16 +80,18 @@
       },
       async handleAddToCart() {
         const idToAdd = this.singleVariantProduct ? this.product.variants[0].id : this.selectedVariant.id;
+        this.adding = true;
         await addToCart(idToAdd, this.quantity);
         this.$emit('productAddedToCart');
+        this.adding = false;
       },
       checkOptionDisabled(option, index) {
         const updatedOptions = [...this.selectedOptions];
         updatedOptions[index] = option;
 
-        const variantExists = this.product.variants.find(variant => variant.options.every(option => updatedOptions.includes(option)));
+        const updatedOptionsVariant = this.product.variants.find(variant => variant.options.every(option => updatedOptions.includes(option)));
 
-        return !!!variantExists;
+        return !(updatedOptionsVariant && updatedOptionsVariant.available);
       }
     },
     computed: {

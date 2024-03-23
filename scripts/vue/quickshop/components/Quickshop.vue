@@ -6,6 +6,7 @@
         <div class="u-noLineHeight">
           <a :href="`/products/${product.handle}`">
             <img
+              class="u-full"
               :src="featuredImage.src"
               :width="featuredImage.width"
               :height="featuredImage.height"
