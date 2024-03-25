@@ -4,7 +4,7 @@
       <div v-if="!singleVariantProduct">
         <div class="c-productActions__option" v-for="(option, optionIndex) in this.product.options_with_values" :key="optionIndex">
           <strong>{{ option.name }}</strong>
-          <ul class="c-productActions__values">
+          <ul v-if="option.name !== 'Color' && option.name !== 'Pattern'" class="c-productActions__values">
             <li v-for="(value, index) in option.values" :key="index">
               <button
                 :class="['c-productActions__value', {
@@ -17,6 +17,21 @@
                 }"
               >
                 {{ value }}
+              </button>
+            </li>
+          </ul>
+          <ul v-else class="c-swatches">
+            <li v-for="(value, index) in option.values" :key="index">
+              <button
+                :class="['c-swatches__swatch', {
+                  'c-swatches__swatch--selected': selectedOptions[optionIndex] === value
+                }]"
+                :disabled="checkOptionDisabled(value, optionIndex)"
+                @click="() => {
+                  handleOptionChange(value, optionIndex);
+                }"
+                :style="`background-image: url(${getSwatchAsset(value)});`"
+              >
               </button>
             </li>
           </ul>
@@ -33,7 +48,7 @@
         }]" @click="() => handleAddToCart()">
           Add To Cart
           <div class="c-btn__overlay">
-            <v-icon name="pr-spinner" animation="spin" />
+            <v-icon name="pr-spinner" animation="spin" scale="1.4" />
           </div>
         </button>
       </div>
@@ -92,6 +107,11 @@
         const updatedOptionsVariant = this.product.variants.find(variant => variant.options.every(option => updatedOptions.includes(option)));
 
         return !(updatedOptionsVariant && updatedOptionsVariant.available);
+      },
+      getSwatchAsset(value) {
+        const valueHandle = value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-$/, '').replace(/^-/, '');
+        const { shop } = window.Shopify;
+        return `https://${shop}/cdn/shop/files/${valueHandle}.png`;
       }
     },
     computed: {
