@@ -1,4 +1,4 @@
-export function formatMoney(cents, currency = 'USD') {
+export function formatMoney(cents, currency = window.Shopify.currency.active) {
   const centsNumber = Number(cents);
   const dollars = centsNumber / 100;
 
