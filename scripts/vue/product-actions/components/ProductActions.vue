@@ -2,41 +2,39 @@
   <div class="c-productActions">
     <div v-if="product.available">
       <div v-if="!singleVariantProduct">
-        <div>
-          <div class="c-productActions__option" v-for="(option, optionIndex) in this.product.options_with_values" :key="optionIndex">
-            <strong>{{ option.name }}</strong>
-            <ul v-if="option.name !== 'Color' && option.name !== 'Pattern'" class="c-productActions__values">
-              <li v-for="(value, index) in option.values" :key="index">
-                <button
-                  :class="['c-productActions__value', {
-                    'c-productActions__value--disabled': checkOptionDisabled(value, optionIndex),
-                    'c-productActions__value--selected': selectedOptions[optionIndex] === value
-                  }]"
-                  :disabled="checkOptionDisabled(value, optionIndex)"
-                  @click="() => {
-                    handleOptionChange(value, optionIndex);
-                  }"
-                >
-                  {{ value }}
-                </button>
-              </li>
-            </ul>
-            <ul v-else class="c-swatches">
-              <li v-for="(value, index) in option.values" :key="index">
-                <button
-                  :class="['c-swatches__swatch', {
-                    'c-swatches__swatch--selected': selectedOptions[optionIndex] === value
-                  }]"
-                  :disabled="checkOptionDisabled(value, optionIndex)"
-                  @click="() => {
-                    handleOptionChange(value, optionIndex);
-                  }"
-                  :style="`background-image: url(${getSwatchAsset(value)});`"
-                >
-                </button>
-              </li>
-            </ul>
-          </div>
+        <div class="c-productActions__option" v-for="(option, optionIndex) in this.product.options_with_values" :key="optionIndex">
+          <strong>{{ option.name }}</strong>
+          <ul v-if="option.name !== 'Color' && option.name !== 'Pattern'" class="c-productActions__values">
+            <li v-for="(value, index) in option.values" :key="index">
+              <button
+                :class="['c-productActions__value', {
+                  'c-productActions__value--disabled': checkOptionDisabled(value, optionIndex),
+                  'c-productActions__value--selected': selectedOptions[optionIndex] === value
+                }]"
+                :disabled="checkOptionDisabled(value, optionIndex)"
+                @click="() => {
+                  handleOptionChange(value, optionIndex);
+                }"
+              >
+                {{ value }}
+              </button>
+            </li>
+          </ul>
+          <ul v-else class="c-swatches">
+            <li v-for="(value, index) in option.values" :key="index">
+              <button
+                :class="['c-swatches__swatch', {
+                  'c-swatches__swatch--selected': selectedOptions[optionIndex] === value
+                }]"
+                :disabled="checkOptionDisabled(value, optionIndex)"
+                @click="() => {
+                  handleOptionChange(value, optionIndex);
+                }"
+                :style="`background-image: url(${getSwatchAsset(value)});`"
+              >
+              </button>
+            </li>
+          </ul>
         </div>
       </div>
       <div class="c-productActions__atc">
