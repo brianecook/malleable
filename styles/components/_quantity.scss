@@ -12,9 +12,6 @@
     height: rem(24);
     border-radius: 100%;
     box-shadow: 0 0 0 rem(1) $color-black;
-    &[disabled] {
-      opacity: 0.5;
-    }
     svg {
       position: absolute;
       top: 50%;

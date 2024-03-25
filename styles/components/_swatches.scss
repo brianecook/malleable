@@ -1,14 +1,29 @@
 .c-swatches {
   display: flex;
   gap: rem(12);
-}
-
-.c-swatches__swatch {
-  border-radius: 100%;
-  width: rem(24);
-  height: rem(24);
-  font-size: 0;
-  &[data-selected] {
-    box-shadow: 0 0 0 rem(2) $color-black inset;
+  &__swatch {
+    position: relative;
+    border-radius: 100%;
+    width: rem(24);
+    height: rem(24);
+    font-size: 0;
+    border: rem(1) solid $color-black;
+    &::before {
+      content: '';
+      border-radius: 100%;
+      position: absolute;
+      box-shadow: 0 0 0 rem(1) $color-black;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(100% + rem(8));
+      height: calc(100% + rem(8));
+      opacity: 0;
+    }
+    &--selected {
+      &::before {
+        opacity: 1;
+      }
+    }
   }
 }
