@@ -2,39 +2,44 @@
   <div class="c-productActions">
     <div v-if="product.available">
       <div v-if="!singleVariantProduct">
-        <div class="c-productActions__option" v-for="(option, optionIndex) in this.product.options_with_values" :key="optionIndex">
-          <strong>{{ option.name }}</strong>
-          <ul v-if="option.name !== 'Color' && option.name !== 'Pattern'" class="c-productActions__values">
-            <li v-for="(value, index) in option.values" :key="index">
-              <button
-                :class="['c-productActions__value', {
-                  'c-productActions__value--disabled': checkOptionDisabled(value, optionIndex),
-                  'c-productActions__value--selected': selectedOptions[optionIndex] === value
-                }]"
-                :disabled="checkOptionDisabled(value, optionIndex)"
-                @click="() => {
-                  handleOptionChange(value, optionIndex);
-                }"
-              >
-                {{ value }}
-              </button>
-            </li>
-          </ul>
-          <ul v-else class="c-swatches">
-            <li v-for="(value, index) in option.values" :key="index">
-              <button
-                :class="['c-swatches__swatch', {
-                  'c-swatches__swatch--selected': selectedOptions[optionIndex] === value
-                }]"
-                :disabled="checkOptionDisabled(value, optionIndex)"
-                @click="() => {
-                  handleOptionChange(value, optionIndex);
-                }"
-                :style="`background-image: url(${getSwatchAsset(value)});`"
-              >
-              </button>
-            </li>
-          </ul>
+        <div class="c-productActions__row" v-for="(option, optionIndex) in this.product.options_with_values" :key="optionIndex">
+          <div class="c-productActions__option">
+            <strong>{{ option.name }}</strong>
+            <ul v-if="option.name !== 'Color' && option.name !== 'Pattern'" class="c-productActions__values">
+              <li v-for="(value, index) in option.values" :key="index">
+                <button
+                  :class="['c-productActions__value', {
+                    'c-productActions__value--disabled': checkOptionDisabled(value, optionIndex),
+                    'c-productActions__value--selected': selectedOptions[optionIndex] === value
+                  }]"
+                  :disabled="checkOptionDisabled(value, optionIndex)"
+                  @click="() => {
+                    handleOptionChange(value, optionIndex);
+                  }"
+                >
+                  {{ value }}
+                </button>
+              </li>
+            </ul>
+            <ul v-else class="c-swatches">
+              <li v-for="(value, index) in option.values" :key="index">
+                <button
+                  :class="['c-swatches__swatch', {
+                    'c-swatches__swatch--selected': selectedOptions[optionIndex] === value
+                  }]"
+                  :disabled="checkOptionDisabled(value, optionIndex)"
+                  @click="() => {
+                    handleOptionChange(value, optionIndex);
+                  }"
+                  :style="`background-image: url(${getSwatchAsset(value)});`"
+                >
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="c-productActions__row">
+          {{ selectedOptionsText }} - {{ selectedVariantPrice }}
         </div>
       </div>
       <div class="c-productActions__atc">
@@ -43,14 +48,12 @@
           @increment="quantity++"
           @decrement="quantity > 1 && quantity--"
         />
-        <button :class="['c-btn', {
-          'c-btn--adding': adding
-        }]" @click="() => handleAddToCart()">
-          Add To Cart
-          <div class="c-btn__overlay">
-            <v-icon name="pr-spinner" animation="spin" scale="1.4" />
-          </div>
-        </button>
+        <btn
+          :adding="adding"
+          @click="handleAddToCart"
+        >
+          Add to Cart
+        </btn>
       </div>
     </div>
     <div v-else>
@@ -60,12 +63,9 @@
 </template>
 
 <script>
-  import { addToCart } from '@scripts/helpers';
-  import { OhVueIcon, addIcons } from 'oh-vue-icons';
-  import { PrSpinner } from 'oh-vue-icons/icons/pr';
-  import Quantity from '../../quantity/Quantity.vue';
-
-  addIcons(PrSpinner)
+  import { addToCart, formatMoney } from '@scripts/helpers';
+  import Quantity from '@components/Quantity.vue';
+  import Btn from '@components/Btn.vue';
 
   export default {
     data() {
@@ -82,9 +82,10 @@
     },
     components: {
       Quantity,
-      "v-icon": OhVueIcon
+      Btn
     },
     methods: {
+      formatMoney,
       handleDec() {
         if(this.quantity > 1) {
           this.quantity--;
@@ -122,9 +123,15 @@
           if (this.selectedOptions.every(option => variantOptions.includes(option))) return variant;
         })
       },
+      selectedVariantPrice() {
+        return formatMoney(this.selectedVariant.price);
+      },
       singleVariantProduct() {
         return this.product?.variants?.length === 1
       },
+      selectedOptionsText() {
+        return this.selectedOptions.join('/');
+      }
     },
     watch: {
       selectedVariant: {

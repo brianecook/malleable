@@ -29,3 +29,17 @@
     z-index: 1;
   }
 }
+
+.c-btnIcon {
+  position: relative;
+  width: rem(40);
+  height: rem(40);
+  border-radius: 100%;
+  background-color: $color-white;
+  &__icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
