@@ -4,7 +4,10 @@
       {{ product.featured_image | image_url: width: 1216 | image_tag: class: 'u-full' }}
     </div>
     <div class="c-shopGrid__details">
-      {{ product.description }}
+      <h1>{{ product.title }}</h1>
+      <div class="c-shopGrid__description rte">
+        {{ product.description }}
+      </div>
       {% render 'widget-product-actions', _product: product %}
     </div>
   </div>

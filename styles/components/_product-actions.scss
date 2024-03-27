@@ -1,8 +1,10 @@
 .c-productActions {
+  &__row {
+    margin-bottom: rem(24);
+  }
   &__option {
     display: grid;
     gap: rem(12);
-    margin-bottom: rem(24);
   }
   &__values {
     display: grid;
@@ -17,6 +19,5 @@
     display: flex;
     align-items: center;
     gap: rem(16);
-    margin-top: rem(28);
   }
 }

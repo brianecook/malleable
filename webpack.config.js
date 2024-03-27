@@ -20,7 +20,7 @@ function getScriptFiles() {
 
 function getWidgetFiles() {
   const entries = {};
-  glob.sync('./scripts/vue/**/app.js').forEach((file) => {
+  glob.sync('./scripts/vue/widgets/**/app.js').forEach((file) => {
     const fileParts = file.split('/');
     const name = `widget-${fileParts[fileParts.length - 2]}`;
     entries[name] = file;
@@ -34,6 +34,7 @@ const widgetsConfig = {
   resolve: {
     alias: {
       '@scripts': path.resolve(__dirname, 'scripts'),
+      '@components': path.resolve(__dirname, 'scripts/vue/components'),
     },
   },
   output: {

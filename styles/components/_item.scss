@@ -1,6 +1,6 @@
 .c-item {
   display: grid;
-  grid-template-columns: rem(125) 1fr;
+  grid-template-columns: 1fr 1.8fr;
   gap: rem(16);
   &__actions {
     display: flex;
@@ -11,5 +11,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  &__details {
+    p {
+      margin-bottom: rem(16);
+    }
   }
 }
