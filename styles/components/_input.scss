@@ -1,0 +1,11 @@
+.c-input {
+  all: unset;
+  width: 100%;
+  height: rem(40);
+  font-size: rem(16);
+  background-color: $color-white;
+  border: 1px solid $color-black;
+  padding: rem(8) rem(12);
+  border-radius: rem(4);
+  box-sizing: border-box;
+}

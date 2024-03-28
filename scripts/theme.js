@@ -1,6 +1,6 @@
 import select from 'selectricity';
 import Quickshop from './web-components/quick-shop';
-import { addToCart, clearCart, getData, setSizeStyleProperty } from './helpers';
+import { addToCart, clearCart } from './helpers';
 import '@styles/theme.scss';
 
 (async () => {
@@ -15,6 +15,11 @@ import '@styles/theme.scss';
 
   select('[data-cart-toggle]').listen('click', () => {
     const event = new CustomEvent('cartToggled');
+    document.dispatchEvent(event);
+  });
+
+  select('[data-search]').listen('click', () => {
+    const event = new CustomEvent('searchToggled');
     document.dispatchEvent(event);
   });
 
