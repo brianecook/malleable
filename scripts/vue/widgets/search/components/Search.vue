@@ -4,10 +4,13 @@
     <div class="c-search">
       <div class="u-relative">
         <input class="c-input c-search__input" ref="search" type="text" v-model="searchTerm" placeholder="Search" />
-        <button v-if="searchTerm" class="c-search__close">
-          <v-icon name="hi-x" @click="searchTerm = ''"></v-icon>
+        <button v-if="searchTerm" class="c-search__clear">
+          <v-icon name="hi-x" scale=".8" @click="clear"></v-icon>
         </button>
       </div>
+      <button class="c-search__close">
+        <v-icon name="hi-x" scale="1.8" @click="open = false"></v-icon>
+      </button>
     </div>
     <div class="c-header__results" v-if="results">
       <div class="o-container">
@@ -64,6 +67,12 @@
           const response = await getData(`/search/suggest.json?q=${term}`);
           this.results = response?.resources?.results;
         }
+      }
+    },
+    methods: {
+      clear() {
+        this.searchTerm = '';
+        this.$nextTick(() => this.$refs.search.focus());
       }
     },
     mounted() {

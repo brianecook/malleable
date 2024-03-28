@@ -1,4 +1,7 @@
 .c-search {
+  display: grid;
+  grid-template-columns: 1fr rem(28);
+  gap: rem(8);
   position: fixed;
   top: rem(70);
   left: 0;
@@ -19,7 +22,7 @@
       width: rem(200);
     }
   }
-  &__close {
+  &__clear {
     position: absolute;
     top: 50%;
     right: rem(24);
@@ -27,5 +30,8 @@
     @include media-desktop-up {
       right: rem(8);
     }
+  }
+  &__close {
+
   }
 }
