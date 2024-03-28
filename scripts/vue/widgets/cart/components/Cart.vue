@@ -58,9 +58,9 @@
     watch: {
       open: (open) => {
         if (open) {
-          select('body').classList.add('u-noScroll');
+          select('body').addClass('u-noScroll');
         } else {
-          select('body').classList.remove('u-noScroll');
+          select('body').removeClass('u-noScroll');
         }
       }
     },
