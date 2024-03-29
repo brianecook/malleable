@@ -18,19 +18,19 @@ function getScriptFiles() {
   return entries;
 }
 
-function getWidgetFiles() {
+function getAppFiles() {
   const entries = {};
-  glob.sync('./scripts/vue/widgets/**/app.js').forEach((file) => {
+  glob.sync('./scripts/vue/apps/**/app.js').forEach((file) => {
     const fileParts = file.split('/');
-    const name = `widget-${fileParts[fileParts.length - 2]}`;
+    const name = `app-${fileParts[fileParts.length - 2]}`;
     entries[name] = file;
   });
   return entries;
 }
 
-const widgetsConfig = {
+const appsConfig = {
   mode: 'development',
-  entry: getWidgetFiles(),
+  entry: getAppFiles(),
   resolve: {
     alias: {
       '@scripts': path.resolve(__dirname, 'scripts'),
@@ -116,4 +116,4 @@ const scriptsConfig = {
   },
 };
 
-module.exports = [scriptsConfig, widgetsConfig];
+module.exports = [scriptsConfig, appsConfig];
