@@ -7,7 +7,7 @@ function getScriptFiles() {
   const entries = {};
   const files = [
     ...glob.sync('./scripts/*.js'),
-    ...glob.sync('./scripts/web-components/sections/*.js'),
+    ...glob.sync('./scripts/sections/*.js'),
   ];
   files.forEach((file) => {
     const fileName = file
@@ -78,7 +78,7 @@ const scriptsConfig = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'theme.css',
+      filename: '[name].min.css',
     }),
   ],
   module: {

@@ -1,5 +1,14 @@
 {
   "sections": {
+    "hero_9jbXig": {
+      "type": "hero",
+      "settings": {
+        "background_image_desktop": "shopify:\/\/shop_images\/mountain-peaks-and-blue-sky.jpg",
+        "heading": "Welcome to Malleable",
+        "copy": "A new frontier awaits.",
+        "content_alignment": "top-left"
+      }
+    },
     "product_grid_gf74Cy": {
       "type": "product-grid",
       "settings": {
@@ -7,6 +16,7 @@
     }
   },
   "order": [
+    "hero_9jbXig",
     "product_grid_gf74Cy"
   ]
 }

@@ -1,0 +1,78 @@
+{{ 'hero.min.css' | asset_url | stylesheet_tag }}
+
+<main-hero>
+  <div class="hero">
+    <div class="hero__background">
+      <picture>
+        <source media="(min-width: 1024px)" srcset="{{ section.settings.background_image_desktop | img_url: 'master' }}">
+        <img src="{{ section.settings.background_image_mobile | img_url: 'master' }}" alt="">
+      </picture>
+    </div>
+    <div class="o-container">
+      <div class="hero__content hero__content--{{ section.settings.content_alignment }}">
+        <h1 class="hero__heading">{{ section.settings.heading }}</h1>
+        <div class="hero__copy">{{ section.settings.copy }}</div>
+      </div>
+    </div>
+  </div>
+</main-hero>
+
+<script src="{{ 'hero.min.js' |  asset_url }}" defer></script>
+
+{% schema %}
+  {
+    "name": "Main Hero",
+    "settings": [
+      {
+        "type": "image_picker",
+        "label": "Background Image (Mobile)",
+        "id": "background_image_mobile"
+      },
+      {
+        "type": "image_picker",
+        "label": "Background Image (Desktop)",
+        "id": "background_image_desktop"
+      },
+      {
+        "type": "text",
+        "label": "Heading",
+        "id": "heading"
+      },
+      {
+        "type": "inline_richtext",
+        "label": "Copy",
+        "id": "copy"
+      },
+      {
+        "type": "select",
+        "label": "Content Alignment",
+        "id": "content_alignment",
+        "options": [
+          {
+            "value": "top-left",
+            "label": "Top Left"
+          },
+          {
+            "value": "center-left",
+            "label": "Center Left"
+          },
+          {
+            "value": "bottom-left",
+            "label": "Bottom Left"
+          },
+          {
+            "value": "center-center",
+            "label": "Center Center"
+          }
+        ],
+        "default": "center-center"
+      }
+    ],
+    "presets": [
+      {
+        "category": "Hero",
+        "name": "Main Hero"
+      }
+    ]
+  }
+{% endschema %}
