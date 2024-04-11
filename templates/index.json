@@ -3,6 +3,7 @@
     "hero_9jbXig": {
       "type": "hero",
       "settings": {
+        "background_image_mobile": "shopify:\/\/shop_images\/mountain-peaks-and-blue-sky.jpg",
         "background_image_desktop": "shopify:\/\/shop_images\/mountain-peaks-and-blue-sky.jpg",
         "heading": "Welcome to Malleable",
         "copy": "A new frontier awaits.",
