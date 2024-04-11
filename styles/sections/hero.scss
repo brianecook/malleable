@@ -15,6 +15,7 @@
     left: 50%;
     bottom: 0;
     transform: translateX(-50%);
+    object-fit: cover;
   }
   &__heading {
     font-size: rem(40);

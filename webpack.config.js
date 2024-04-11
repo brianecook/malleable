@@ -13,18 +13,20 @@ function getScriptFiles() {
     const fileName = file
       .substring(file.lastIndexOf('/') + 1)
       .replace('.js', '');
-    entries[fileName] = file;
+    entries[fileName] = `./${file}`;
   });
   return entries;
 }
 
 function getAppFiles() {
   const entries = {};
-  glob.sync('./scripts/vue/apps/**/app.js').forEach((file) => {
-    const fileParts = file.split('/');
-    const name = `app-${fileParts[fileParts.length - 2]}`;
-    entries[name] = file;
-  });
+  glob
+    .sync(['./scripts/vue/apps/**/app.js', './scripts/preact/apps/**/app.jsx'])
+    .forEach((file) => {
+      const fileParts = file.split('/');
+      const name = `${fileParts[fileParts.length - 2]}.${fileParts[1]}`;
+      entries[name] = `./${file}`;
+    });
   return entries;
 }
 
@@ -54,6 +56,21 @@ const appsConfig = {
           loader: 'babel-loader',
         },
         exclude: /node_modules/,
+      },
+      {
+        test: /\.(jsx)$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env'],
+          plugins: [
+            ['@babel/transform-runtime'],
+            [
+              '@babel/plugin-transform-react-jsx',
+              { pragma: 'h', pragmaFrag: 'Fragment' },
+            ],
+          ],
+        },
       },
       {
         test: /\.css$/i,
