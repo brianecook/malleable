@@ -1,7 +1,13 @@
 import select from 'selectricity';
 import Quickshop from './web-components/quick-shop';
-import { addToCart, clearCart } from './helpers';
+import * as helpers from './helpers';
 import '@styles/theme.scss';
+
+Object.keys(helpers).forEach((key) => {
+  window[key] = helpers[key];
+});
+
+const { addToCart, clearCart } = window;
 
 (async () => {
   select('[data-add-to-cart]').listen('click', async ({ $node }) => {

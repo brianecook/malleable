@@ -8,7 +8,8 @@
   @include media-desktop-up {
     padding: rem(24);
   }
-  &__background {
+  &__background,
+  img {
     position: absolute;
     min-height: 100%;
     min-width: 100%;

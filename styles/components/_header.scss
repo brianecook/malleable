@@ -63,4 +63,19 @@
     display: grid;
     gap: rem(16)
   }
+  &__cart-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: rem(20);
+    height: rem(20);
+    font-size: rem(12);
+    color: $color-white;
+    border-radius: 100%;
+  }
 }

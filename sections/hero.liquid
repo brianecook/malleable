@@ -1,17 +1,19 @@
+{% assign _settings = section.settings %}
+
 {{ 'hero.min.css' | asset_url | stylesheet_tag }}
 
 <main-hero>
   <div class="hero">
-    <div class="hero__background">
-      <picture>
-        <source media="(min-width: 1024px)" srcset="{{ section.settings.background_image_desktop | img_url: 'master' }}">
-        <img src="{{ section.settings.background_image_mobile | img_url: 'master' }}" alt="">
+    <div>
+      <picture class="hero__background">
+        <source media="(min-width: 1024px)" srcset="{{ _settings.image_desktop | img_url: 'master' }}">
+        <img src="{{ _settings.image_mobile | img_url: 'master' }}" alt="">
       </picture>
     </div>
     <div class="o-container">
-      <div class="hero__content hero__content--{{ section.settings.content_alignment }}">
-        <h1 class="hero__heading">{{ section.settings.heading }}</h1>
-        <div class="hero__copy">{{ section.settings.copy }}</div>
+      <div class="hero__content hero__content--{{ _settings.content_alignment }}">
+        <h1 class="hero__heading">{{ _settings.heading }}</h1>
+        <div class="hero__copy">{{ _settings.copy }}</div>
       </div>
     </div>
   </div>
@@ -26,12 +28,12 @@
       {
         "type": "image_picker",
         "label": "Background Image (Mobile)",
-        "id": "background_image_mobile"
+        "id": "image_mobile"
       },
       {
         "type": "image_picker",
         "label": "Background Image (Desktop)",
-        "id": "background_image_desktop"
+        "id": "image_desktop"
       },
       {
         "type": "text",

@@ -3,7 +3,8 @@
     "hero_9jbXig": {
       "type": "hero",
       "settings": {
-        "background_image_desktop": "shopify:\/\/shop_images\/mountain-peaks-and-blue-sky.jpg",
+        "image_mobile": "shopify:\/\/shop_images\/kite-surfing-in-ocean.jpg",
+        "image_desktop": "shopify:\/\/shop_images\/mountain-peaks-and-blue-sky.jpg",
         "heading": "Welcome to Malleable",
         "copy": "A new frontier awaits.",
         "content_alignment": "top-left"

@@ -11,11 +11,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Borel&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ 'theme.min.css' | asset_url }}">
     {{ content_for_header }}
+    <script src="{{ 'theme.min.js' | asset_url }}" defer></script>
   </head>
   <body>
     {% render 'app-cart' %}
     {% section 'header' %}
     {{ content_for_layout }}
-    <script src="{{ 'theme.min.js' | asset_url }}" defer></script>
   </body>
 </html>
