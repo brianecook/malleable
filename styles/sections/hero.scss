@@ -19,8 +19,11 @@
     object-fit: cover;
   }
   &__heading {
-    font-size: rem(40);
+    font-size: rem(28);
     margin-bottom: rem(16);
+    @include media-desktop-up {
+      font-size: rem(40);
+    }
   }
   &__content {
     position: absolute;

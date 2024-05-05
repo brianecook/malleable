@@ -1,14 +1,20 @@
-export async function getData(path, params = null) {
+export async function getData(
+  path: string,
+  params: object = {}
+): Promise<unknown> {
   try {
     const response = await fetch(path, params);
-    const data = await response.json();
+    const data: unknown = await response.json();
     return data;
   } catch (error) {
     console.error(error);
   }
 }
 
-export async function postData(path, payload) {
+export async function postData(
+  path: string,
+  payload?: object
+): Promise<unknown> {
   try {
     const response = await fetch(path, {
       method: 'POST',
@@ -17,12 +23,9 @@ export async function postData(path, payload) {
       },
       body: JSON.stringify(payload),
     });
-    return response.json();
+    const data: unknown = await response.json();
+    return data;
   } catch (error) {
     console.error(error);
   }
 }
-
-export const getSectionInnerHTML = (html, selector = '.shopify-section') =>
-  new DOMParser().parseFromString(html, 'text/html').querySelector(selector)
-    ?.innerHTML;

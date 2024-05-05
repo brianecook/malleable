@@ -40,7 +40,7 @@
               %}
               <li>
                 <button
-                  class="c-swatches__swatch"
+                  class="c-swatch"
                   {% if forloop.first %}data-selected{% endif %}
                   data-option="{{ value }}"
                   style="background-image: url('{{ value_asset | file_url }}')"

@@ -2,17 +2,18 @@ const path = require('path');
 const glob = require('glob');
 const { VueLoaderPlugin } = require('vue-loader');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 function getScriptFiles() {
   const entries = {};
   const files = [
-    ...glob.sync('./scripts/*.js'),
-    ...glob.sync('./scripts/sections/*.js'),
+    ...glob.sync('./scripts/*.ts'),
+    ...glob.sync('./scripts/sections/*.ts'),
   ];
   files.forEach((file) => {
     const fileName = file
       .substring(file.lastIndexOf('/') + 1)
-      .replace('.js', '');
+      .replace('.ts', '');
     entries[fileName] = `./${file}`;
   });
   return entries;
@@ -21,7 +22,7 @@ function getScriptFiles() {
 function getAppFiles() {
   const entries = {};
   glob
-    .sync(['./scripts/vue/apps/**/app.js', './scripts/preact/apps/**/app.jsx'])
+    .sync(['./scripts/vue/apps/**/app.js', './scripts/preact/apps/**/app.tsx'])
     .forEach((file) => {
       const fileParts = file.split('/');
       const name = `${fileParts[fileParts.length - 2]}.${fileParts[1]}`;
@@ -37,18 +38,30 @@ const appsConfig = {
     alias: {
       '@scripts': path.resolve(__dirname, 'scripts'),
       '@components': path.resolve(__dirname, 'scripts/vue/components'),
+      react: 'preact/compat',
+      'react-dom/test-utils': 'preact/test-utils',
+      'react-dom': 'preact/compat', // Must be below test-utils
+      'react/jsx-runtime': 'preact/jsx-runtime',
     },
+    extensions: ['.ts', '.tsx', '.js'],
   },
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'assets'),
   },
-  plugins: [new VueLoaderPlugin()],
+  plugins: [new VueLoaderPlugin(), new BundleAnalyzerPlugin()],
   module: {
     rules: [
       {
         test: /\.vue$/,
         loader: 'vue-loader',
+      },
+      {
+        test: /\.tsx?$/,
+        use: {
+          loader: 'ts-loader',
+        },
+        exclude: /node_modules/,
       },
       {
         test: /\.js$/,
@@ -59,8 +72,8 @@ const appsConfig = {
       },
       {
         test: /\.(jsx)$/,
-        exclude: /node_modules/,
         loader: 'babel-loader',
+        exclude: /node_modules/,
         options: {
           presets: ['@babel/preset-env'],
           plugins: [
@@ -88,6 +101,7 @@ const scriptsConfig = {
       '@scripts': path.resolve(__dirname, 'scripts'),
       '@styles': path.resolve(__dirname, 'styles'),
     },
+    extensions: ['.ts', '.tsx', '.js'],
   },
   output: {
     filename: '[name].min.js',
@@ -100,6 +114,13 @@ const scriptsConfig = {
   ],
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'ts-loader',
+        },
+      },
       {
         test: /\.js$/,
         use: {

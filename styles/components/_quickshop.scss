@@ -20,6 +20,8 @@
     top: rem(16);
     right: rem(16);
     z-index: 1;
+    text-align: center;
+    line-height: 0;
     @include media-desktop-up {
       top: rem(12);
       right: rem(12);

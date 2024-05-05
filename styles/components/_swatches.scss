@@ -1,29 +1,48 @@
 .c-swatches {
   display: flex;
   gap: rem(12);
-  &__swatch {
-    position: relative;
+}
+
+.c-swatch {
+  position: relative;
+  border-radius: 100%;
+  width: rem(24);
+  height: rem(24);
+  border: rem(1) solid $color-black;
+  &::before {
+    content: '';
     border-radius: 100%;
-    width: rem(24);
-    height: rem(24);
-    font-size: 0;
-    border: rem(1) solid $color-black;
+    position: absolute;
+    box-shadow: 0 0 0 rem(1) $color-black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% + rem(8));
+    height: calc(100% + rem(8));
+    opacity: 0;
+  }
+  &::after {
+    content: attr(aria-label);
+    font-size: rem(14);
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + rem(8));
+    transform: translateX(-50%);
+    z-index: 1;
+    background-color: $color-black;
+    color: $color-white;
+    padding: rem(4) rem(8);
+    border-radius: rem(2);
+  }
+  &--selected {
     &::before {
-      content: '';
-      border-radius: 100%;
-      position: absolute;
-      box-shadow: 0 0 0 rem(1) $color-black;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: calc(100% + rem(8));
-      height: calc(100% + rem(8));
-      opacity: 0;
+      opacity: 1;
     }
-    &--selected {
-      &::before {
-        opacity: 1;
-      }
+  }
+  &:hover {
+    &::after {
+      display: inline-block;
     }
   }
 }

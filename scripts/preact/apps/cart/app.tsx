@@ -1,13 +1,15 @@
-import { Fragment, h, render } from 'preact';
+import { h, render } from 'preact';
 import { useState, useEffect, useRef } from 'preact/hooks';
 import select from 'selectricity';
-import Item from './components/Item.jsx';
+import { MdClose } from '@react-icons/all-files/md/MdClose';
+import Item from './components/Item';
+import { Cart as CartType } from '../../types';
 
-const { getData, getCart, postData, formatMoney } = window;
+const { getCart, postData, formatMoney } = window.helpers;
 
 function Cart() {
   const [open, setOpen] = useState(false);
-  const [cart, setCart] = useState({});
+  const [cart, setCart] = useState<CartType | null>(null);
 
   const firstUpdate = useRef(true);
 
@@ -27,42 +29,51 @@ function Cart() {
     const fetchCart = async () => {
       if (firstUpdate.current) {
         firstUpdate.current = false;
-        const currentCart = await getData('/cart.js');
+        const currentCart = await getCart();
         setCart(currentCart);
       } else {
-        select('[data-cart-count]').textContent = cart.item_count;
+        select('[data-cart-count]').textContent =
+          cart?.item_count.toString() || '0';
       }
     };
 
     fetchCart();
   }, [cart]);
 
-  const handleChangeQuantity = async (line, quantity) => {
-    const response = await postData('/cart/change.js', {
+  const handleChangeQuantity = async (line: number, quantity: number) => {
+    const response = (await postData('/cart/change.js', {
       line,
       quantity,
-    });
+    })) as CartType;
     setCart(response);
   };
 
-  const subtotal = formatMoney(cart.items_subtotal_price);
+  const subtotal = formatMoney(cart?.items_subtotal_price || 0);
 
   return (
-    <Fragment>
-      {open && <div className="c-overlay" onClick={() => setOpen(false)} />}
+    <>
+      {open && (
+        <button
+          type="button"
+          aria-label="Close cart"
+          className="c-overlay"
+          onClick={() => setOpen(false)}
+        />
+      )}
       <div className={`c-cart ${open ? 'c-cart--open' : ''}`}>
         <div className="c-cart__inner">
           <div className="c-cart__header">
             <div>
-              <strong>Your Cart</strong> ({cart.item_count}{' '}
-              {cart.item_count === 1 ? 'item' : 'items'})
+              <strong>Your Cart</strong> ({cart?.item_count}{' '}
+              {cart?.item_count === 1 ? 'item' : 'items'})
             </div>
             <button
+              aria-label="Close cart"
               className="c-cart__close"
               onClick={() => setOpen(false)}
               type="button"
             >
-              X
+              <MdClose size="1.6em" />
             </button>
           </div>
           <div className="c-cart__items">
@@ -91,8 +102,12 @@ function Cart() {
           </a>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 }
 
-render(<Cart />, document.querySelector('#app-cart'));
+const $cart = document.querySelector('#app-cart');
+
+if ($cart) {
+  render(<Cart />, $cart);
+}

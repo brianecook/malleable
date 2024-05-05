@@ -1,1 +1,14 @@
-.c-productGrid{padding:1rem 0}
+/*!***********************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/sass-resources-loader/lib/loader.js??ruleSet[1].rules[2].use[3]!./styles/sections/product-grid.scss ***!
+  \***********************************************************************************************************************************************************************************************************/
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.c-productGrid {
+  padding: 1rem 0;
+}

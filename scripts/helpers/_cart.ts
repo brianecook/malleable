@@ -1,6 +1,7 @@
+import { Cart } from '../preact/types';
 import { getData, postData } from './_api';
 
-function informCartUpdated(response) {
+function informCartUpdated(response?: object) {
   const event = new CustomEvent('cartUpdated', {
     detail: {
       currentCart: response,
@@ -10,12 +11,12 @@ function informCartUpdated(response) {
   document.dispatchEvent(event);
 }
 
-export async function getCart() {
-  const response = await getData('/cart.js');
+export async function getCart(): Promise<Cart> {
+  const response = (await getData('/cart.js')) as Cart;
   return response;
 }
 
-export async function addToCart(id, quantity = 1) {
+export async function addToCart(id: number | string, quantity = 1) {
   const response = await postData('/cart/add.js', {
     items: [
       {
@@ -28,7 +29,7 @@ export async function addToCart(id, quantity = 1) {
   return response;
 }
 
-export async function updateCart(id, quantity) {
+export async function updateCart(id: number, quantity: number) {
   const response = await postData('/cart/change.js', {
     id,
     quantity,

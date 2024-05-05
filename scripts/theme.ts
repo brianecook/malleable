@@ -1,18 +1,13 @@
 import select from 'selectricity';
 import Quickshop from './web-components/quick-shop';
-import * as helpers from './helpers';
 import '@styles/theme.scss';
 
-Object.keys(helpers).forEach((key) => {
-  window[key] = helpers[key];
-});
+const { addToCart, clearCart } = window.helpers;
 
-const { addToCart, clearCart } = window;
-
-(async () => {
+(() => {
   select('[data-add-to-cart]').listen('click', async ({ $node }) => {
     const { id, quantity = 1 } = $node.dataset;
-    await addToCart(id, quantity);
+    await addToCart(Number(id), Number(quantity));
   });
 
   select('[data-clear-cart]').listen('click', async () => {

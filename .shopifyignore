@@ -9,3 +9,4 @@ scripts
 styles
 README.md
 styleguide.config.js
+tsconfig.json
