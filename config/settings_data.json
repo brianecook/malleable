@@ -1,5 +1,6 @@
 {
   "current": {
+    "free_shipping_threshold": "5000",
     "sections": {
       "header": {
         "type": "header",

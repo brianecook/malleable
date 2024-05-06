@@ -5,8 +5,12 @@ import { MdClose } from '@react-icons/all-files/md/MdClose';
 import Item from './components/Item';
 import { Cart as CartType } from '../../types';
 import useModal from '../../hooks/useModal';
+import Progress from '../../components/Progress';
 
 const { getCart, postData, formatMoney } = window.helpers;
+
+const freeShippingThreshold: number | null =
+  window.freeShippingThreshold || null;
 
 function Cart() {
   const { open, setOpen, openListener } = useModal();
@@ -47,7 +51,13 @@ function Cart() {
     setCart(response);
   };
 
-  const subtotal = formatMoney(cart?.items_subtotal_price || 0);
+  const itemsSubtotalPrice = cart?.items_subtotal_price || 0;
+  const subtotal = formatMoney(itemsSubtotalPrice);
+  const freeShippingThresholdValue = freeShippingThreshold || 0;
+
+  const amountToFreeShipping = freeShippingThresholdValue - itemsSubtotalPrice;
+  const percentToFreeShipping =
+    (itemsSubtotalPrice / freeShippingThresholdValue) * 100;
 
   return (
     <>
@@ -95,6 +105,21 @@ function Cart() {
           </div>
         </div>
         <div className="c-cart__bottom">
+          {freeShippingThreshold && (
+            <div className="c-cart__message u-textCenter">
+              {amountToFreeShipping > 0 ? (
+                <>
+                  Spend {formatMoney(amountToFreeShipping)} more for free
+                  shipping
+                  <div className="c-cart__progress">
+                    <Progress percentComplete={percentToFreeShipping} />
+                  </div>
+                </>
+              ) : (
+                window.freeShippingSuccessMessage
+              )}
+            </div>
+          )}
           <p className="c-cart__subtotal">Total: {subtotal}</p>
           <a className="c-cart__cta c-btn" href="/checkout">
             Checkout

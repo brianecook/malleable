@@ -1,3 +1,10 @@
 <div id="app-cart"></div>
 
+<script>
+  {% if settings.free_shipping_threshold != blank %}
+    window.freeShippingThreshold = {{ settings.free_shipping_threshold | plus: 0 }};
+    window.freeShippingSuccessMessage = {{ settings.free_shipping_success_message | json }};
+  {% endif %}
+</script>
+
 <script src="{{ 'cart.preact.js' | asset_url }}" defer async></script>

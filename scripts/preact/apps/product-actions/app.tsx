@@ -7,8 +7,8 @@ import { Product, Variant } from '../../types';
 import { handleize } from '../../../helpers';
 
 type Props = {
-  product: Product;
-  handleProductAddedToCart?: () => void | null;
+  product: Product | undefined;
+  handleProductAddedToCart?: () => void;
 };
 
 const { classes, addToCart, formatMoney } = window.helpers;
@@ -20,6 +20,8 @@ export default function ProductActions({
   const [quantity, setQuantity] = useState<number>(1);
   const [selectedOptions, setSelectedOptions] = useState<string[] | null>([]);
   const [adding, setAdding] = useState<boolean>(false);
+
+  if (!product) throw new Error('Product prop is required');
 
   const isSingleVariantProduct = product?.variants?.length === 1;
 
@@ -186,6 +188,6 @@ export default function ProductActions({
 
 const $productActions = document.querySelector('#app-product-actions');
 
-if ($productActions) {
+if ($productActions && window.product) {
   render(<ProductActions product={window.product} />, $productActions);
 }

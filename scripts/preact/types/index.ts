@@ -22,7 +22,7 @@ export type Helpers = {
 
 declare global {
   interface Window {
-    product: Product;
+    product?: Product;
     Shopify: {
       shop: string;
       country: string;
@@ -32,6 +32,8 @@ declare global {
         rate: string;
       };
     };
+    freeShippingThreshold?: number;
+    freeShippingSuccessMessage?: string;
     helpers: Helpers;
   }
 }

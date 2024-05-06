@@ -62,12 +62,12 @@
     display: grid;
     gap: rem(16)
   }
-  &__cart-count {
+  &__cartCount {
     position: absolute;
     top: 0;
     right: 0;
     transform: translate(50%, -50%);
-    background-color: $color-black;
+    background-color: $color-accent;
     display: flex;
     align-items: center;
     justify-content: center;
