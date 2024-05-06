@@ -4,9 +4,9 @@
 package.json
 package-lock.json
 webpack.config.js
-node_modules
-scripts
-styles
+node_modules/
+scripts/
+styles/
 README.md
 styleguide.config.js
 tsconfig.json
