@@ -18,7 +18,6 @@ export default function Item({
   handleDec,
   handleRemove,
 }: Props) {
-  console.log(item);
   return (
     <div className="c-item">
       <div className="u-noLineHeight">

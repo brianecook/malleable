@@ -3,9 +3,10 @@ import { useState, useEffect } from 'preact/hooks';
 import { MdClose } from '@react-icons/all-files/md/MdClose';
 import { EventProduct, Product } from '../../types';
 import ProductActions from '../product-actions/app';
+import useModal from '../../hooks/useModal';
 
 function Quickshop() {
-  const [open, setOpen] = useState<boolean>(false);
+  const { open, setOpen } = useModal();
   const [product, setProduct] = useState<Product | null>(null);
 
   useEffect(() => {

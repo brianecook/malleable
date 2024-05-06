@@ -29,7 +29,6 @@
     }
   }
   &__menu {
-    position: relative;
     display: flex;
     align-items: center;
     gap: rem(16);
@@ -68,7 +67,7 @@
     top: 0;
     right: 0;
     transform: translate(50%, -50%);
-    background-color: red;
+    background-color: $color-black;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -62,6 +62,13 @@ export type Image = {
   alt: string;
 };
 
+export type FeaturedImage = {
+  url: string;
+  width: number;
+  height: number;
+  alt: string;
+};
+
 export type Product = {
   title: string;
   available: boolean;
@@ -69,7 +76,9 @@ export type Product = {
   options_with_values: OptionsWithValues[];
   handle: string;
   media: Image[];
+  featured_image: FeaturedImage;
   description: TrustedHTML;
+  url: string;
 };
 
 export type EventProduct = {
@@ -99,4 +108,12 @@ export type Cart = {
 
 export type Metafields = {
   [key: string]: string;
+};
+
+export type SearchResults = {
+  resources: {
+    results: {
+      products: Product[];
+    };
+  };
 };

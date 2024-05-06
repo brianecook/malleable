@@ -4,19 +4,18 @@ import select from 'selectricity';
 import { MdClose } from '@react-icons/all-files/md/MdClose';
 import Item from './components/Item';
 import { Cart as CartType } from '../../types';
+import useModal from '../../hooks/useModal';
 
 const { getCart, postData, formatMoney } = window.helpers;
 
 function Cart() {
-  const [open, setOpen] = useState(false);
+  const { open, setOpen, openListener } = useModal();
   const [cart, setCart] = useState<CartType | null>(null);
 
   const firstUpdate = useRef(true);
 
   useEffect(() => {
-    document.addEventListener('cartToggled', () => {
-      setOpen(!open);
-    });
+    openListener('cartToggled');
 
     document.addEventListener('cartUpdated', async () => {
       const updatedCart = await getCart();

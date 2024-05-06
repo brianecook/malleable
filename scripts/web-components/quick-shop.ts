@@ -14,7 +14,6 @@ export default class Quickshop extends HTMLElement {
       const productUrl = $node.dataset.quickshop as string;
       const data = (await getData(`${productUrl}?view=quickshop`)) as string;
       const parsedData = JSON.parse(data) as EventProduct;
-      console.log(parsedData);
       const event = new CustomEvent('quickshopOpened', {
         detail: { product: parsedData },
       });
