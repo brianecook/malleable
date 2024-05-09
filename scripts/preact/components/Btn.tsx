@@ -9,8 +9,6 @@ type Props = {
   disabled?: boolean;
 };
 
-// const { classes } = window.helpers;
-
 export default function Btn({
   adding = false,
   type = 'button',
