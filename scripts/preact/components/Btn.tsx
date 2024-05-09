@@ -1,22 +1,32 @@
 import { h } from 'preact';
 import { ImSpinner8 } from '@react-icons/all-files/im/ImSpinner8';
-import { classes } from '../../helpers';
 
 type Props = {
-  adding: boolean;
+  adding?: boolean;
+  type?: 'button' | 'submit' | 'reset';
   handleClick: () => void;
   children: string;
+  disabled?: boolean;
 };
 
-export default function Btn({ adding, handleClick, children }: Props) {
+// const { classes } = window.helpers;
+
+export default function Btn({
+  adding = false,
+  type = 'button',
+  handleClick,
+  children,
+  disabled,
+}: Props) {
+  const { classes } = window.helpers;
   return (
     <button
       {...classes('c-btn', {
         'c-btn--adding': adding,
       })}
-      type="button"
+      type={type} // eslint-disable-line
       onClick={handleClick}
-      disabled={adding}
+      disabled={adding || disabled}
     >
       {children}
       <div className="c-btn__overlay">

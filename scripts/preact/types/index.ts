@@ -1,12 +1,7 @@
-import {
-  getCart,
-  addToCart,
-  clearCart,
-  postData,
-  getData,
-  classes,
-  formatMoney,
-} from '../../helpers';
+import { getCart, addToCart, clearCart } from '../../helpers/cart';
+import { postData, getData } from '../../helpers/api';
+import { formatMoney } from '../../helpers/money';
+import { classes, debounce } from '../../helpers/dom';
 
 export type Helpers = {
   getCart: typeof getCart;
@@ -16,13 +11,13 @@ export type Helpers = {
   getData: typeof getData;
   formatMoney: typeof formatMoney;
   classes: typeof classes;
+  debounce: typeof debounce;
 };
 
 // declare custom window property types
 
 declare global {
   interface Window {
-    product?: Product;
     Shopify: {
       shop: string;
       country: string;
@@ -32,9 +27,10 @@ declare global {
         rate: string;
       };
     };
+    helpers: Helpers;
+    product?: Product;
     freeShippingThreshold?: number;
     freeShippingSuccessMessage?: string;
-    helpers: Helpers;
   }
 }
 

@@ -7,14 +7,14 @@ import { Cart as CartType } from '../../types';
 import useModal from '../../hooks/useModal';
 import Progress from '../../components/Progress';
 
-const { getCart, postData, formatMoney } = window.helpers;
-
-const freeShippingThreshold: number | null =
-  window.freeShippingThreshold || null;
-
 function Cart() {
   const { open, setOpen, openListener } = useModal();
   const [cart, setCart] = useState<CartType | null>(null);
+
+  const { getCart, postData, formatMoney } = window.helpers;
+
+  const freeShippingThreshold: number | null =
+    window.freeShippingThreshold || null;
 
   const firstUpdate = useRef(true);
 
