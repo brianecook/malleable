@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'preact/hooks';
 import select from 'selectricity';
 import { MdClose } from '@react-icons/all-files/md/MdClose';
 import Item from './components/Item';
-import { Cart as CartType } from '../../types';
+import { Cart as CartType } from '../../../types';
 import useModal from '../../hooks/useModal';
 import Progress from '../../components/Progress';
 

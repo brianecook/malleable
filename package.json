@@ -15,7 +15,7 @@
       "class-methods-use-this": "off"
     },
     "ignorePatterns": [
-      "jest.config.js"
+      "jest.setup.js"
     ],
     "settings": {
       "import/resolver": {

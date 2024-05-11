@@ -1,4 +1,4 @@
-import { Cart } from '../preact/types';
+import { Cart } from '../types';
 import { getData, postData } from './api';
 
 function informCartUpdated(response?: object) {

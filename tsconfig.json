@@ -6,6 +6,7 @@
     "module": "commonjs",
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "typeRoots": ["./node_modules/@types", "./scripts/types"]
   },
   "include": [
     "./scripts/**/*.ts",

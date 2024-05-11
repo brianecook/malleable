@@ -1,7 +1,7 @@
-import { getCart, addToCart, clearCart } from '../../helpers/cart';
-import { postData, getData } from '../../helpers/api';
-import { formatMoney } from '../../helpers/money';
-import { classes, debounce } from '../../helpers/dom';
+import { getCart, addToCart, clearCart } from '../helpers/cart';
+import { postData, getData } from '../helpers/api';
+import { formatMoney } from '../helpers/money';
+import { classes, debounce } from '../helpers/dom';
 
 export type Helpers = {
   getCart: typeof getCart;

@@ -22,11 +22,17 @@ export default function Quantity({
         onClick={handleDecrement}
         disabled={quantity <= minimum}
         type="button"
+        aria-label="Decrease quantity"
       >
         <FiMinusCircle size="1.6em" />
       </button>
       <span className="c-qty__value">{quantity}</span>
-      <button className="c-qty__button" onClick={handleIncrement} type="button">
+      <button
+        className="c-qty__button"
+        onClick={handleIncrement}
+        type="button"
+        aria-label="Increase quantity"
+      >
         <FiPlusCircle size="1.6em" />
       </button>
     </div>
