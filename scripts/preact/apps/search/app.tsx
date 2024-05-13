@@ -1,7 +1,7 @@
 import { h, render } from 'preact';
 import { useEffect, useState, useRef } from 'preact/hooks';
 import { MdClose } from '@react-icons/all-files/md/MdClose';
-import { SearchResults } from '../../types';
+import { SearchResults } from '../../../types';
 import { getData } from '../../../helpers/api';
 import useModal from '../../hooks/useModal';
 

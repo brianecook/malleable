@@ -1,7 +1,7 @@
 import { h, render } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
 import { MdClose } from '@react-icons/all-files/md/MdClose';
-import { EventProduct, Product } from '../../types';
+import { EventProduct, Product } from '../../../types';
 import ProductActions from '../product-actions/app';
 import useModal from '../../hooks/useModal';
 
@@ -42,6 +42,7 @@ function Quickshop() {
           className="c-btnIcon c-quickshop__close"
           onClick={() => setOpen(false)}
           type="button"
+          aria-label="Close quickshop"
         >
           <MdClose size="1.6em" />
         </button>
