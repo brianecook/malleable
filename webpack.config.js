@@ -1,6 +1,5 @@
 const path = require('path');
 const glob = require('glob');
-const { VueLoaderPlugin } = require('vue-loader');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
@@ -22,7 +21,7 @@ function getScriptFiles() {
 function getAppFiles() {
   const entries = {};
   glob
-    .sync(['./scripts/vue/apps/**/app.js', './scripts/preact/apps/**/app.tsx'])
+    .sync(['./scripts/preact/apps/**/app.tsx'])
     .forEach((file) => {
       const fileParts = file.split('/');
       const name = `${fileParts[fileParts.length - 2]}.${fileParts[1]}`;
@@ -37,7 +36,6 @@ const appsConfig = {
   resolve: {
     alias: {
       '@scripts': path.resolve(__dirname, 'scripts'),
-      '@components': path.resolve(__dirname, 'scripts/vue/components'),
       react: 'preact/compat',
       'react-dom/test-utils': 'preact/test-utils',
       'react-dom': 'preact/compat', // Must be below test-utils
@@ -49,13 +47,11 @@ const appsConfig = {
     filename: '[name].js',
     path: path.resolve(__dirname, 'assets'),
   },
-  plugins: [new VueLoaderPlugin(), new BundleAnalyzerPlugin()],
+  plugins: [new BundleAnalyzerPlugin({
+    analyzerMode: 'static'
+  })],
   module: {
     rules: [
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-      },
       {
         test: /\.tsx?$/,
         use: {

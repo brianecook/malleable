@@ -1,5 +1,5 @@
-import { Cart } from '../preact/types';
-import { getData, postData } from './_api';
+import { Cart } from '../types';
+import { getData, postData } from './api';
 
 function informCartUpdated(response?: object) {
   const event = new CustomEvent('cartUpdated', {

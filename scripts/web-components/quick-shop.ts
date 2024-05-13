@@ -1,6 +1,6 @@
 import select, { SelectObject } from 'selectricity';
 import { getData } from '../helpers';
-import { EventProduct } from '../preact/types';
+import { EventProduct } from '../types';
 
 export default class Quickshop extends HTMLElement {
   private quickshop: SelectObject;

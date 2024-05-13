@@ -1,6 +1,7 @@
 .github
 .babelrc
 .gitignore
+jest.setup.js
 package.json
 package-lock.json
 webpack.config.js
