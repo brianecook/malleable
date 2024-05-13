@@ -45,6 +45,7 @@
   "scripts": {
     "start": "shopify theme dev --store=eloquent-development --theme-editor-sync",
     "watch": "webpack --watch",
+    "analyze": "webpack-bundle-analyzer stats.json",
     "push": "shopify theme push",
     "build": "webpack --mode production",
     "test": "jest",

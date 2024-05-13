@@ -47,6 +47,9 @@ const appsConfig = {
     filename: '[name].js',
     path: path.resolve(__dirname, 'assets'),
   },
+  plugins: [new BundleAnalyzerPlugin({
+    analyzerMode: 'static'
+  })],
   module: {
     rules: [
       {
