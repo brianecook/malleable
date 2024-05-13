@@ -49,7 +49,7 @@ const appsConfig = {
     filename: '[name].js',
     path: path.resolve(__dirname, 'assets'),
   },
-  plugins: [new VueLoaderPlugin(), new BundleAnalyzerPlugin()],
+  plugins: [new VueLoaderPlugin()],
   module: {
     rules: [
       {
