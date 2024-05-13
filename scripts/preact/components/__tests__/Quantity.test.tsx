@@ -1,5 +1,5 @@
 import { render, fireEvent, screen } from '@testing-library/react';
-import { useState } from 'preact/hooks';
+import { useState } from 'react';
 import '@testing-library/jest-dom';
 
 import Quantity from '../Quantity';
@@ -93,5 +93,21 @@ describe('Qty', () => {
     );
     fireEvent.click(screen.getByRole('button', { name: /Increase quantity/i }));
     expect(handleIncrement).toHaveBeenCalled();
+  });
+
+  test('text of updated quantity is displayed when increment button is clicked', () => {
+    const Component = () => {
+      const [quantity, setQuantity] = useState<number>(1);
+      return (
+        <Quantity
+          quantity={quantity}
+          handleDecrement={() => setQuantity(quantity - 1)}
+          handleIncrement={() => setQuantity(quantity + 1)}
+        />
+      );
+    };
+    render(<Component />);
+    fireEvent.click(screen.getByRole('button', { name: /Increase quantity/i }));
+    expect(screen.getByText('2')).toBeInTheDocument();
   });
 });

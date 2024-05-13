@@ -37,7 +37,10 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": ["@testing-library/jest-dom", "<rootDir>/jest.setup.js"]
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-dom",
+      "<rootDir>/jest.setup.js"
+    ]
   },
   "scripts": {
     "start": "shopify theme dev --store=eloquent-development --theme-editor-sync",
@@ -96,6 +99,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "mini-css-extract-plugin": "^2.7.0",
     "prettier": "^2.8.1",
+    "react": "^18.3.1",
     "sass": "^1.56.1",
     "sass-loader": "^13.2.0",
     "sass-resources-loader": "^2.2.5",
