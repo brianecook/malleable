@@ -1,5 +1,5 @@
 import * as helpers from './helpers';
-import { Helpers } from './preact/types';
+import { Helpers } from './types';
 
 window.helpers = {
   ...helpers,

@@ -1,7 +1,7 @@
 import { h } from 'preact';
 import { MdClose } from '@react-icons/all-files/md/MdClose';
 import Quantity from '../../../components/Quantity';
-import { LineItem } from '../../../types';
+import { LineItem } from '../../../../types';
 
 const { formatMoney } = window.helpers;
 

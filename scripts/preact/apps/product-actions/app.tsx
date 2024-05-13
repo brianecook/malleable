@@ -3,7 +3,7 @@ import { useState, useEffect } from 'preact/hooks';
 import Quantity from '../../components/Quantity';
 import Btn from '../../components/Btn';
 import Swatch from '../../components/Swatch';
-import { Product, Variant } from '../../types';
+import { Product, Variant } from '../../../types';
 import { handleize } from '../../../helpers/shopify';
 
 type Props = {
