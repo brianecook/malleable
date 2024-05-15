@@ -33,6 +33,10 @@ const scriptsConfig = {
     alias: {
       '@scripts': path.resolve(__dirname, 'scripts'),
       '@styles': path.resolve(__dirname, 'styles'),
+      'react': 'preact/compat',
+      'react-dom/test-utils': 'preact/test-utils',
+      'react-dom': 'preact/compat', // Must be below test-utils
+      'react/jsx-runtime': 'preact/jsx-runtime',
     },
     extensions: ['.ts', '.tsx', '.js'],
   },
