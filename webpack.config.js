@@ -8,23 +8,86 @@ function getScriptFiles() {
   const files = [
     ...glob.sync('./scripts/*.ts'),
     ...glob.sync('./scripts/sections/*.ts'),
-    ...glob.sync('./scripts/preact/apps/**/app.tsx')
   ];
   files.forEach((file) => {
-    let fileName;
-    if (file.includes('/apps/'))  {
-      fileName = `app-${file.split('/apps/')[1].split('/')[0]}`;
-    } else {
-      fileName = file
-        .substring(file.lastIndexOf('/') + 1)
-        .replace('.ts', '');
-    }
+    const fileName = file
+      .substring(file.lastIndexOf('/') + 1)
+      .replace('.ts', '');
     entries[fileName] = `./${file}`;
   });
   return entries;
 }
 
+function getAppFiles() {
+  const entries = {};
+  glob
+    .sync(['./scripts/preact/apps/**/app.tsx'])
+    .forEach((file) => {
+      const fileParts = file.split('/');
+      const name = `${fileParts[fileParts.length - 2]}.${fileParts[1]}`;
+      entries[name] = `./${file}`;
+    });
+  return entries;
+}
 
+const appsConfig = {
+  mode: 'development',
+  entry: getAppFiles(),
+  resolve: {
+    alias: {
+      '@scripts': path.resolve(__dirname, 'scripts'),
+      react: 'preact/compat',
+      'react-dom/test-utils': 'preact/test-utils',
+      'react-dom': 'preact/compat', // Must be below test-utils
+      'react/jsx-runtime': 'preact/jsx-runtime',
+    },
+    extensions: ['.ts', '.tsx', '.js'],
+  },
+  output: {
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'assets'),
+  },
+  plugins: [new BundleAnalyzerPlugin({
+    analyzerMode: 'static'
+  })],
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: {
+          loader: 'ts-loader',
+        },
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.js$/,
+        use: {
+          loader: 'babel-loader',
+        },
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.(jsx)$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        options: {
+          presets: ['@babel/preset-env'],
+          plugins: [
+            ['@babel/transform-runtime'],
+            [
+              '@babel/plugin-transform-react-jsx',
+              { pragma: 'h', pragmaFrag: 'Fragment' },
+            ],
+          ],
+        },
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
+};
 
 const scriptsConfig = {
   mode: 'development',
@@ -62,21 +125,6 @@ const scriptsConfig = {
         exclude: /node_modules/,
       },
       {
-        test: /\.(jsx)$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        options: {
-          presets: ['@babel/preset-env'],
-          plugins: [
-            ['@babel/transform-runtime'],
-            [
-              '@babel/plugin-transform-react-jsx',
-              { pragma: 'h', pragmaFrag: 'Fragment' },
-            ],
-          ],
-        },
-      },
-      {
         test: /\.s[ac]ss$/i,
         use: [
           MiniCssExtractPlugin.loader,
@@ -102,4 +150,4 @@ const scriptsConfig = {
   },
 };
 
-module.exports = [scriptsConfig];
+module.exports = [scriptsConfig, appsConfig];
