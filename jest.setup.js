@@ -1,4 +1,8 @@
-const helpers = require('./scripts/helpers');
+const apiHelpers = require('./scripts/helpers/api');
+const cartHelpers = require('./scripts/helpers/cart');
+const domHelpers = require('./scripts/helpers/dom');
+const moneyHelpers = require('./scripts/helpers/money');
+const shopifyHelpers = require('./scripts/helpers/shopify');
 
 beforeAll(() => {
   global.window.Shopify = {
@@ -11,6 +15,10 @@ beforeAll(() => {
     },
   };
   global.window.helpers = {
-    ...helpers,
+    ...apiHelpers,
+    ...cartHelpers,
+    ...domHelpers,
+    ...moneyHelpers,
+    ...shopifyHelpers,
   };
 });
