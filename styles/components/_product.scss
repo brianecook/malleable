@@ -1,9 +1,11 @@
 .c-product {
   position: relative;
   line-height: 0;
-  &:hover {
-    .c-product__actions {
-      display: block;
+  @include media-desktop-up {
+    &:hover {
+      .c-product__actions {
+        display: block;
+      }
     }
   }
 }

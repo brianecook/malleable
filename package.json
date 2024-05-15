@@ -14,8 +14,16 @@
     "rules": {
       "class-methods-use-this": "off"
     },
-    "ignorePatterns": [
-      "jest.setup.js"
+    "overrides": [
+      {
+        "files": ["*.js"],
+        "parserOptions": {
+          "project": null
+        },
+        "rules": {
+          "@typescript-eslint/*": "off"
+        }
+      }
     ],
     "settings": {
       "import/resolver": {
