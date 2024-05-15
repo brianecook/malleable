@@ -1,6 +1,6 @@
 # Malleable
 
-Starter repository for Shopify theme development. View demo store [here](https://eloquent-development.myshopify.com) (pw: eloquent).
+Malleable is a starter repository for Shopify theme development. View demo store [here](https://eloquent-development.myshopify.com) (pw: eloquent).
 
 ## Features
 
@@ -8,6 +8,7 @@ Starter repository for Shopify theme development. View demo store [here](https:/
 - Typescript
 - Preact
 - Component testing in Jest
+  - Includes Github Actions file for plug and play CICD
 - ESLint
 - Useful helper functions
 - DOM Manipulation using [Selectricity](https://www.npmjs.com/package/selectricity)
