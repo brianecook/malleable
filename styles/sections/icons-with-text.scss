@@ -1,0 +1,41 @@
+.c-iconsWithText {
+  text-align: center;
+  padding: rem(32) 0;
+  @include media-desktop-up {
+    padding: rem(48) 0;
+  }
+  &__title {
+    margin-bottom: rem(24);
+  }
+  &__list {
+    display: grid;
+    gap: rem(48) rem(16);
+    @include media-tablet-up {
+      grid-template-columns: 1fr 1fr;
+    }
+    @include media-desktop-up {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    li {
+      display: flex;
+    }
+  }
+}
+
+.c-iconWithText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &__title {
+    margin-bottom: rem(16);
+  }
+  &__icon {
+    margin: 0 auto rem(24);
+    max-width: rem(56);
+  }
+  &__copy {
+    max-width: 85%;
+    margin: 0 auto;
+  }
+}

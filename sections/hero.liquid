@@ -3,19 +3,19 @@
 {{ 'hero.min.css' | asset_url | stylesheet_tag }}
 
 <main-hero>
-  <div class="hero">
+  <div class="c-hero">
     <div>
-      <picture class="hero__background">
+      <picture class="c-hero__background">
         <source media="(min-width: 1024px)" srcset="{{ _settings.image_desktop | img_url: 'master' }}">
         <img src="{{ _settings.image_mobile | img_url: 'master' }}" alt="" loading="eager">
       </picture>
     </div>
     <div class="o-container">
-      <div class="hero__content hero__content--{{ _settings.content_alignment }}">
-        <h1 class="hero__heading">{{ _settings.heading }}</h1>
-        <div class="hero__copy">{{ _settings.copy }}</div>
+      <div class="c-hero__content c-hero__content--{{ _settings.content_alignment }}">
+        <h1 class="c-hero__heading">{{ _settings.heading }}</h1>
+        <div class="c-hero__copy">{{ _settings.copy }}</div>
         {% unless section.blocks == blank %}
-          <ul class="hero__btns">
+          <ul class="c-hero__btns">
             {% for block in section.blocks %}
               {% liquid
                 assign url = block.settings.url
