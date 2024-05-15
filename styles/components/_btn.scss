@@ -1,5 +1,6 @@
 .c-btn {
   position: relative;
+  display: inline-block;
   background-color: $color-black;
   color: $color-white;
   text-transform: uppercase;
@@ -8,7 +9,11 @@
   line-height: 1;
   letter-spacing: rem(1);
   overflow: hidden;
-  padding: rem(12) rem(16);
+  padding: rem(16) rem(24);
+  &--secondary {
+    background-color: $color-white;
+    color: $color-black;
+  }
   &--full {
     display: block;
     width: 100%;

@@ -5,8 +5,12 @@ Starter repository for Shopify theme development. View demo store [here](https:/
 ## Features
 
 - SASS
-- ES6 processing
-- Vue widget integration
+- Typescript
+- Preact
+- Component testing in Jest
+- ESLint
+- Useful helper functions
+- DOM Manipulation using [Selectricity](https://www.npmjs.com/package/selectricity)
 
 ## Requirements
 - [Node / NPM](https://nodejs.org/en)

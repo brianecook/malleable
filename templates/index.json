@@ -2,6 +2,30 @@
   "sections": {
     "hero_9jbXig": {
       "type": "hero",
+      "blocks": {
+        "link_UX9AT4": {
+          "type": "link",
+          "settings": {
+            "text": "Shop Now",
+            "url": "shopify:\/\/products\/antique-drawers",
+            "external": false,
+            "style": "primary"
+          }
+        },
+        "link_PUTWnh": {
+          "type": "link",
+          "settings": {
+            "text": "View Code",
+            "url": "https:\/\/github.com\/brianecook\/malleable\/",
+            "external": true,
+            "style": "secondary"
+          }
+        }
+      },
+      "block_order": [
+        "link_UX9AT4",
+        "link_PUTWnh"
+      ],
       "settings": {
         "image_mobile": "shopify:\/\/shop_images\/kite-surfing-in-ocean.jpg",
         "image_desktop": "shopify:\/\/shop_images\/mountain-peaks-and-blue-sky.jpg",
