@@ -1,0 +1,81 @@
+{% assign _settings = section.settings %}
+
+{{ 'icons-with-text.min.css' | asset_url | stylesheet_tag }}
+
+<div class="c-iconsWithText">
+  <div class="o-container">
+    {% if _settings.title != blank %}
+      <h2 class="c-iconsWithText__title">{{ _settings.title }}</h2>
+    {% endif %}
+    {% if section.blocks != blank %}
+      <ul class="c-iconsWithText__list">
+        {% for block in section.blocks %}
+          <li>
+            <div class="c-iconWithText">
+              {% if block.settings.icon != blank %}
+                <div>
+                  <div class="c-iconWithText__icon">
+                    {{ block.settings.icon }}
+                  </div>
+                </div>
+              {% endif %}
+              <div class="c-iconWithText__copy">
+                {% if block.settings.title != blank %}
+                  <h3 class="c-iconWithText__title">{{ block.settings.title }}</h3>
+                {% endif %}
+                {% if block.settings.text != blank %}
+                  <div class="c-iconWithText__text">
+                    {{ block.settings.text }}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Icons with Text",
+    "settings": [
+      {
+        "type": "text",
+        "label": "Section Title",
+        "id": "title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "icon_with_text",
+        "name": "Icon with Text",
+        "settings": [
+          {
+            "type": "textarea",
+            "label": "Icon",
+            "id": "icon",
+            "info": "Enter as raw SVG code"
+          },
+          {
+            "type": "text",
+            "label": "Title",
+            "id": "title"
+          },
+          {
+            "type": "inline_richtext",
+            "label": "Text",
+            "id": "text"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "category": "Icons with Text",
+        "name": "Icons with Text"
+      }
+    ]
+  }
+{% endschema %}
