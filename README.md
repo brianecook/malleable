@@ -4,14 +4,15 @@ Malleable is a starter repository for Shopify theme development. View demo store
 
 ## Features
 
-- SASS
-- Typescript
-- Preact
-- Component testing in Jest
-  - Includes Github Actions file for plug and play CICD
-- ESLint
+- Section scoped styles and scripts in [Shopify 2.0](https://shopify.dev/docs/themes/os20)
+- [SASS](https://sass-lang.com/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Preact](https://preactjs.com/)
+- Component testing in [Jest](https://jestjs.io/)
+  - Includes [Github Actions](https://docs.github.com/en/actions) file for plug and play CICD
+- [ESLint](https://eslint.org/)
 - Useful helper functions
-- DOM Manipulation using [Selectricity](https://www.npmjs.com/package/selectricity)
+- DOM Manipulation using [selectricity](https://www.npmjs.com/package/selectricity)
 
 ## Requirements
 - [Node / NPM](https://nodejs.org/en)
