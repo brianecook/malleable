@@ -1,0 +1,33 @@
+.c-accordion {
+  position: relative;
+  padding: rem(16) 0;
+  border-bottom: rem(1) solid $color-black;
+  svg {
+    position: absolute;
+    top: rem(14);
+    right: 0;
+    &:last-of-type {
+      display: none;
+    }
+  }
+  &.c-accordion--open {
+    svg:first-of-type {
+      display: none;
+    }
+    svg:last-of-type {
+      display: block;
+    }
+  }
+  &__toggle {
+    font-weight: 700;
+    .c-accordion--open & {
+      margin-bottom: rem(12);
+    }
+  }
+  &__content {
+    display: none;
+    .c-accordion--open & {
+      display: block;
+    }
+  }
+}

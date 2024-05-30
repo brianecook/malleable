@@ -1,3 +1,4 @@
+import { StorefrontApiClient } from '@shopify/storefront-api-client';
 import { getCart, addToCart, clearCart } from '../helpers/cart';
 import { postData, getData } from '../helpers/api';
 import { formatMoney } from '../helpers/money';
@@ -27,6 +28,7 @@ declare global {
         rate: string;
       };
     };
+    client: StorefrontApiClient;
     helpers: Helpers;
     product?: Product;
     freeShippingThreshold?: number;
@@ -42,23 +44,23 @@ export type OptionsWithValues = {
   values: string[];
 };
 
-export type Variant = {
-  available: boolean;
-  id: number;
-  title: string;
-  option1: string | null;
-  option2: string | null;
-  option3: string | null;
-  options: string[];
-  price: number;
-};
+// export type Variant = {
+//   available: boolean;
+//   id: number;
+//   title: string;
+//   option1: string | null;
+//   option2: string | null;
+//   option3: string | null;
+//   options: string[];
+//   price: number;
+// };
 
-export type Image = {
-  src: string;
-  width: number;
-  height: number;
-  alt: string;
-};
+// export type Image = {
+//   src: string;
+//   width: number;
+//   height: number;
+//   alt: string;
+// };
 
 export type FeaturedImage = {
   url: string;
@@ -67,16 +69,54 @@ export type FeaturedImage = {
   alt: string;
 };
 
-export type Product = {
+export type Variant = {
   title: string;
-  available: boolean;
-  variants: Variant[];
-  options_with_values: OptionsWithValues[];
-  handle: string;
-  media: Image[];
-  featured_image: FeaturedImage;
-  description: TrustedHTML;
+  availableForSale: boolean;
+  id: string;
+  price: {
+    amount: string;
+    currencyCode: string;
+  };
+  compareAtPrice: {
+    amount: string;
+    currencyCode: string;
+  };
+  selectedOptions: [
+    {
+      name: string;
+      value: string;
+    }
+  ];
+};
+
+export type Image = {
+  id: string;
+  width: number;
+  height: number;
   url: string;
+  altText: string | undefined;
+};
+
+export type Option = {
+  name: string;
+  values: string[];
+};
+
+export type Product = {
+  availableForSale: boolean;
+  id: string;
+  title: string;
+  handle: string;
+  url: string;
+  descriptionHtml: TrustedHTML;
+  featured_image: FeaturedImage;
+  variants: {
+    nodes: [Variant];
+  };
+  images: {
+    nodes: [Image];
+  };
+  options: [Option];
 };
 
 export type EventProduct = {

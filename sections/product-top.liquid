@@ -8,7 +8,21 @@
       <div class="c-shopGrid__description rte">
         {{ product.description }}
       </div>
-      {% render 'app-product-actions', _product: product %}
+      {% render 'app-product-actions' %}
+      <div class="c-shopGrid__accordions">
+        {% for accordion in product.metafields.custom.accordions.value %}
+          {% render 'accordion'
+            title: accordion.title,
+            text: accordion.text
+          %}
+        {% endfor %}
+        {% for accordion in shop.metaobjects['global_product_accordion'].values %}
+          {% render 'accordion'
+            title: accordion.title,
+            text: accordion.text
+          %}
+        {% endfor %}
+      </div>
     </div>
   </div>
 </div>
