@@ -1,7 +1,7 @@
 import { h, render } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
 import { MdClose } from '@react-icons/all-files/md/MdClose';
-import { EventProduct, Product } from '../../../types';
+import type { Product } from '@shopify/hydrogen-react/storefront-api-types';
 import ProductActions from '../product-actions/app';
 import useModal from '../../hooks/useModal';
 
@@ -11,14 +11,9 @@ function Quickshop() {
 
   useEffect(() => {
     document.addEventListener('quickshopOpened', ((
-      e: CustomEvent<{ product: EventProduct }>
+      e: CustomEvent<{ product: Product }>
     ) => {
-      const eventProduct: EventProduct = e.detail.product;
-      const { details, options_with_values } = eventProduct; //eslint-disable-line
-      setProduct({
-        ...details,
-        options_with_values, //eslint-disable-line
-      });
+      setProduct(e.detail.product);
       setOpen(true);
     }) as EventListener);
   }, []);
@@ -27,7 +22,7 @@ function Quickshop() {
     return null;
   }
 
-  const featuredImage = product.media[0];
+  const featuredImage = product.images.nodes[0];
 
   return (
     <>
@@ -51,10 +46,10 @@ function Quickshop() {
             <a href={`/products/${product.handle}`}>
               <img
                 className="u-full"
-                src={featuredImage.src}
-                width={featuredImage.width}
-                height={featuredImage.height}
-                alt={featuredImage.alt || product.title}
+                src={featuredImage.url}
+                width={featuredImage.width || ''}
+                height={featuredImage.height || ''}
+                alt={featuredImage.altText || product.title}
               />
             </a>
           </div>
@@ -63,7 +58,7 @@ function Quickshop() {
             <div
               className="c-quickshop__description rte"
               dangerouslySetInnerHTML={{
-                __html: product.description || '',
+                __html: product.descriptionHtml || '',
               }}
             />
             <ProductActions

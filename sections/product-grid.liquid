@@ -3,14 +3,14 @@
 <div class="c-productGrid">
   <div class="o-container">
     <div class="o-grid">
-      {% for product in collections.all.products %}
+      {% for _product in collections.all.products %}
         <quick-shop>
           <div class="c-product">
-            <a href="{{ product.url }}">
-              {{ product.featured_image | image_url: width: 700 | image_tag }}
+            <a href="{{ _product.url }}">
+              {{ _product.featured_image | image_url: width: 700 | image_tag }}
             </a>
             <div class="c-product__actions">
-              <button class="c-product__cta c-btn c-btn--full" data-quickshop="{{ product.url }}">Quickshop</button>
+              <button class="c-product__cta c-btn c-btn--full" data-quickshop="{{ _product.handle }}">Quickshop</button>
             </div>
           </div>
         </quick-shop>

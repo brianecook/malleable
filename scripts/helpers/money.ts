@@ -9,3 +9,8 @@ export function formatMoney(
     currency: localCurrency,
   }).format(dollars);
 }
+
+export function formatDollars(dollars: string) {
+  const cents = Number(dollars) * 100;
+  return formatMoney(cents);
+}

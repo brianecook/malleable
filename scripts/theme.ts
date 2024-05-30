@@ -1,5 +1,6 @@
 import select from 'selectricity';
 import Quickshop from './web-components/quick-shop';
+import AccordionItem from './web-components/accordion-item';
 import '@styles/theme.scss';
 
 const { addToCart, clearCart } = window.helpers;
@@ -25,4 +26,5 @@ const { addToCart, clearCart } = window.helpers;
   });
 
   customElements.define('quick-shop', Quickshop);
+  customElements.define('accordion-item', AccordionItem);
 })();
