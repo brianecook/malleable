@@ -1,3 +1,25 @@
+export const searchQuery = `
+  query suggestions($query: String!) {
+    predictiveSearch(query: $query) {
+      queries {
+        text
+      }
+      products {
+        id
+        handle
+        title
+        onlineStoreUrl
+        featuredImage {
+          url
+          altText
+          width
+          height
+        }
+      }
+    }
+  }
+`;
+
 export const quickshopQuery = `
   query QuickshopQuery($handle: String) {
     product(handle: $handle) {

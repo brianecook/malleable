@@ -1,14 +1,14 @@
 import { h, render } from 'preact';
 import { useEffect, useState, useRef } from 'preact/hooks';
 import { MdClose } from '@react-icons/all-files/md/MdClose';
-import { SearchResults } from '../../../types';
-import { getData } from '../../../helpers/api';
+import { PredictiveSearchResult } from '@shopify/hydrogen-react/storefront-api-types';
 import useModal from '../../hooks/useModal';
+import { searchQuery } from '../../../graphql/queries';
 
 function Search() {
   const { open, setOpen, openListener } = useModal();
   const [query, setQuery] = useState<string>('');
-  const [results, setResults] = useState<SearchResults | null>(null);
+  const [results, setResults] = useState<PredictiveSearchResult | null>(null);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -18,12 +18,16 @@ function Search() {
 
   useEffect(() => {
     const fetchResults = async () => {
-      const response = (await getData(
-        `/search/suggest.json?q=${query}`
-      )) as SearchResults;
-      setResults(response);
+      const {
+        data: { predictiveSearch },
+      } = (await window.client.request(searchQuery, {
+        variables: {
+          query,
+        },
+      })) as { data: { predictiveSearch: PredictiveSearchResult } };
+      setResults(predictiveSearch);
     };
-    if (query.length > 1) {
+    if (query.length > 2) {
       fetchResults();
     } else {
       setResults(null);
@@ -87,16 +91,19 @@ function Search() {
       {query.length > 2 && (
         <div className="c-header__results">
           <div className="o-container">
-            {results?.resources?.results?.products?.length ? (
+            {results?.products?.length ? (
               <div className="c-header__products">
-                {results?.resources?.results?.products?.map((product) => (
+                {results?.products?.map((product) => (
                   <div className="c-header__result">
-                    <a className="c-header__product" href={product.url}>
+                    <a
+                      className="c-header__product"
+                      href={`/products/${product.handle || ''}`}
+                    >
                       <img
-                        src={product.featured_image.url}
-                        alt={product.featured_image.alt}
-                        width={product.featured_image.width}
-                        height={product.featured_image.height}
+                        src={product.featuredImage?.url || ''}
+                        alt={product.featuredImage?.altText || ''}
+                        width={product.featuredImage?.width || ''}
+                        height={product.featuredImage?.height || ''}
                       />
                       <strong>{product.title}</strong>
                     </a>
