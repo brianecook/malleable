@@ -1,14 +1,14 @@
 .c-productActions {
   &__row {
-    margin-bottom: rem(32);
+    margin-bottom: rem(24);
   }
   &__option {
     display: grid;
     gap: rem(12);
   }
   &__values {
-    display: grid;
-    gap: rem(6);
+    display: flex;
+    gap: rem(12);
   }
   &__value {
     &--selected {
