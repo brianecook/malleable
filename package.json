@@ -53,7 +53,7 @@
     ]
   },
   "scripts": {
-    "start": "shopify theme dev --store=eloquent-development --theme-editor-sync",
+    "start": "shopify theme dev --store=eloquent-apps --theme-editor-sync",
     "watch": "webpack --watch",
     "analyze": "webpack-bundle-analyzer stats.json",
     "push": "shopify theme push",

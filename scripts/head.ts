@@ -9,5 +9,5 @@ window.helpers = {
 window.client = createStorefrontApiClient({
   storeDomain: `http://${window.Shopify.shop}`,
   apiVersion: '2024-04',
-  publicAccessToken: '8a0d0b86b028d11e10361b533d14d1d0',
+  publicAccessToken: 'c06046a92e063d4d94d02da0ffc96d8e',
 });

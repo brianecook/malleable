@@ -6,8 +6,8 @@
   <div class="c-hero">
     <div>
       <picture class="c-hero__background">
-        <source media="(min-width: 1024px)" srcset="{{ _settings.image_desktop | img_url: 'master' }}">
-        <img src="{{ _settings.image_mobile | img_url: 'master' }}" width="{{ section.image_mobile.width }}" height="{{ section.image_mobile.height }}" alt="">
+        <source media="(min-width: 1024px)" srcset="{{ _settings.image_desktop | image_url: width: 2000, format: 'webp' }} 2x, {{ _settings.image_desktop | image_url: width: 1000, format: 'webp' }} 1x">
+        <img srcset="{{ _settings.image_mobile | image_url: width: 1200, format: 'webp' }} 2x, {{ _settings.image_mobile | image_url: width: 600, format: 'webp' }} 1x" src="{{ _settings.image_mobile | image_url: width: 600, format: 'webp' }}" width="{{ section.image_mobile.width }}" height="{{ section.image_mobile.height }}" alt="">
       </picture>
     </div>
     <div class="o-container">

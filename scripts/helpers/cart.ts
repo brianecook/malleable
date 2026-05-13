@@ -17,10 +17,14 @@ export async function getCart(): Promise<Cart> {
 }
 
 export async function addToCart(id: number | string, quantity = 1) {
+  const numericId =
+    typeof id === 'string' && id.startsWith('gid://')
+      ? Number(id.split('/').pop())
+      : Number(id);
   const response = await postData('/cart/add.js', {
     items: [
       {
-        id,
+        id: numericId,
         quantity,
       },
     ],
