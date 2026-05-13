@@ -53,6 +53,12 @@ This theme uses the [Storefront API](https://shopify.dev/docs/api/storefront) to
    - `unauthenticated_read_selling_plans`
 5. Save, then open the **API credentials** tab and click **Install app**.
 6. Under *Storefront API access token*, copy the token.
-7. Paste it into `scripts/head.ts` as the `publicAccessToken` value passed to `createStorefrontApiClient`.
+7. Copy `.env.example` to `.env` in the project root and paste the token as `STOREFRONT_API_TOKEN`:
 
-The Storefront API is read-only and this token is designed to be exposed in client-side code, so committing it to the repo is expected. Avoid adding scopes you don't need — in particular, customer-related scopes touch PII and should only be enabled if you're building account flows.
+   ```
+   STOREFRONT_API_TOKEN=your_token_here
+   ```
+
+   Webpack will inline this value into the bundle at build time (via `dotenv` + `DefinePlugin`), so be sure to restart `npm run watch` after editing `.env`. The `.env` file is gitignored.
+
+The Storefront API is read-only and this token is designed to be exposed in client-side code — once you build, the token ships in `assets/head.min.js` and is visible to anyone in DevTools. Using `.env` here is purely for ergonomics (different tokens per environment, no committed secrets), not for keeping the token hidden at runtime. Avoid enabling scopes you don't need — in particular, customer-related scopes touch PII and should only be added if you're building account flows.

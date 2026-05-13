@@ -1,7 +1,10 @@
 const path = require('path');
 const glob = require('glob');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+
+require('dotenv').config();
 
 function getScriptFiles() {
   const entries = {};
@@ -47,6 +50,9 @@ const scriptsConfig = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].min.css',
+    }),
+    new webpack.DefinePlugin({
+      'process.env.STOREFRONT_API_TOKEN': JSON.stringify(process.env.STOREFRONT_API_TOKEN),
     }),
   ],
   module: {
